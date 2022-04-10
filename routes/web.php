@@ -12,8 +12,6 @@ Route::get('product/{slug}', [App\Http\Controllers\ProductController::class, 'de
 Route::get('category/{slug}', [App\Http\Controllers\ProductController::class, 'productByCategory'])->name('category.product');
 Route::get('tag/{slug}', [App\Http\Controllers\ProductController::class, 'productByTag'])->name('tag.product');
 
-
-
 Route::group(['as' => 'master.', 'prefix' => 'master',  'middleware' => 'master'], function () {
     Route::get('dashboard', [App\Http\Controllers\Master\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('tag', App\Http\Controllers\Master\TagController::class);
@@ -53,6 +51,13 @@ Route::group(['as' => 'shipper.', 'prefix' => 'shipper', 'middleware' => 'shippe
 
     Route::resource('user', App\Http\Controllers\Shipper\UserController::class);
     Route::put('password-update', [ App\Http\Controllers\Shipper\UserController::class, 'updatePassword'])->name('password.update');
+
+});
+                                                
+Route::group(['as' => 'customer.', 'prefix' => 'customer', 'middleware' => 'customer'], function () {
+    Route::get('account', [App\Http\Controllers\UserController::class, 'index'])->name('account');
+    Route::put('update/{id}', [ App\Http\Controllers\UserController::class, 'update'])->name('update');
+    Route::put('password-update', [ App\Http\Controllers\UserController::class, 'updatePassword'])->name('password.update');
 
 });
 

@@ -40,6 +40,8 @@ class LoginController extends Controller
             $this->redirectTo = route('master.dashboard');
         } elseif(Auth::check() && Auth::user()->role->id == 2) {
             $this->redirectTo = route('staff.dashboard');
+        } elseif(Auth::check() && Auth::user()->role->id == 3) {
+            $this->redirectTo = route('customer.account');
         } elseif(Auth::check() && Auth::user()->role->id == 4) {
             $this->redirectTo = route('shipper.dashboard');
         }

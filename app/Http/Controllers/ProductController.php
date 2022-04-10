@@ -25,12 +25,12 @@ class ProductController extends Controller
         $category =  $product->categories()->get();
         $related_products = $category[0]->products()->approved()->published()->get();
 
-        $productKey = 'product_'. $product->id;
+        // $productKey = 'product_'. $product->id;
 
-        if(!Session::has($productKey)){
-            $product->increment('view_count');
-            Session::put($productKey,1);
-        }
+        // if(!Session::has($productKey)){
+        //     $product->increment('view_count');
+        //     Session::put($productKey,1);
+        // }
         return view('product', compact('product', 'related_products'));
     }
 

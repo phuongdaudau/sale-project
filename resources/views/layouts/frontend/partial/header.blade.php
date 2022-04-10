@@ -6,7 +6,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> hanpico@gmail.com</li>
-                                <li>Sự lựa chọn tốt nhất của bạn trong kiểm soát lượng nước</li>
+                                <li>Sự lựa chọn tốt nhất trong kiểm soát lượng nước</li>
                             </ul>
                         </div>
                     </div>
