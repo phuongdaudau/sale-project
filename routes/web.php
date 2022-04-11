@@ -21,13 +21,10 @@ Route::group(['as' => 'master.', 'prefix' => 'master',  'middleware' => 'master'
     Route::resource('user', App\Http\Controllers\Master\UserController::class);
     Route::put('password-update', [ App\Http\Controllers\Master\UserController::class, 'updatePassword'])->name('password.update');
     Route::put('update-role/{id}', [ App\Http\Controllers\Master\UserController::class, 'updateRole'])->name('user.updateRole');
-
     Route::resource('product', App\Http\Controllers\Master\ProductController::class);
     Route::put('/product/{id}/approve', [App\Http\Controllers\Master\ProductController::class, 'approval'])->name('product.approve');
-
     Route::resource('order', App\Http\Controllers\Master\OrderController::class);
     Route::put('/order/{id}/approve', [App\Http\Controllers\Master\OrderController::class, 'approval'])->name('order.approve');
-
 });
 
 Route::group(['as' => 'staff.', 'prefix' => 'staff', 'middleware' => 'staff'], function () {
@@ -48,17 +45,16 @@ Route::group(['as' => 'shipper.', 'prefix' => 'shipper', 'middleware' => 'shippe
     Route::get('order/{id}', [App\Http\Controllers\Shipper\DashboardController::class, 'order'])->name('order');
     Route::get('update/{id}', [App\Http\Controllers\Shipper\DashboardController::class, 'update'])->name('update');
     Route::put('updateShip/{id}', [App\Http\Controllers\Shipper\DashboardController::class, 'updateShip'])->name('updateShip');
-
     Route::resource('user', App\Http\Controllers\Shipper\UserController::class);
     Route::put('password-update', [ App\Http\Controllers\Shipper\UserController::class, 'updatePassword'])->name('password.update');
-
 });
                                                 
 Route::group(['as' => 'customer.', 'prefix' => 'customer', 'middleware' => 'customer'], function () {
     Route::get('account', [App\Http\Controllers\UserController::class, 'index'])->name('account');
     Route::put('update/{id}', [ App\Http\Controllers\UserController::class, 'update'])->name('update');
     Route::put('password-update', [ App\Http\Controllers\UserController::class, 'updatePassword'])->name('password.update');
-
+    Route::post('favorite/{product}/add', [App\Http\Controllers\UserController::class, 'addFavorite'])->name('product.favorite');
+    Route::get('favorite', [App\Http\Controllers\UserController::class, 'showFavorite'])->name('favorite.show');
 });
 
 Auth::routes();

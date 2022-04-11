@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -72,5 +74,28 @@ class UserController extends Controller
             Toastr::error('Mật khẩu không khớp!', 'Error');
             return redirect()->back();
         }
+    }
+
+    public function addFavorite($product)
+    {
+        $user = Auth::user();
+        $isFavorite = $user->favorite_products()->where('product_id', $product)->count();
+
+        if ($isFavorite == 0) {
+            $user->favorite_products()->attach($product);
+            Toastr::success('Thêm sản phẩm yêu thích thành công!', 'Success');
+            return redirect()->back();
+        } else {
+            $user->favorite_products()->detach($product);
+            Toastr::success('Xóa sản phẩm yêu thích thành công!', 'Success');
+            return redirect()->back();
+        }
+    }
+
+    public function showFavorite(){
+        $products = Auth::user()->favorite_products;
+        $categories = Category::latest()->get();
+        $tags = Tag::latest()->get();
+        return view('favorite', compact('tags','categories','products'));
     }
 }

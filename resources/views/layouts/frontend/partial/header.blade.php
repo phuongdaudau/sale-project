@@ -68,8 +68,15 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            @guest
+                            <li><a href="{{route('login')}}"><i class="fa fa-heart"></i> <span>0</span></a></li>
+                            <li><a href="{{route('login')}}"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                            @else
+                            <li><a href="{{route('customer.favorite.show')}}"><i class="fa fa-heart"></i> <span>{{Auth::user()->favorite_products->where('pivot.user_id',Auth::id())->count()}}</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            @endguest
+            
+                            
                         </ul>
                         <div class="header__cart__price">Tổng: <span>1.5000.000</span></div>
                     </div>

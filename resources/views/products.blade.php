@@ -125,7 +125,17 @@
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="{{ Storage::disk('public')->url('product/'. $image) }}">
                                             <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <li>
+                                                    @guest
+                                                        <a href="{{route('login')}}"><i class="fa fa-heart"></i></a>
+                                                    @else
+                                                        <a href="#" onclick="document.getElementById('favorite-form-{{ $product->id }}').submit();"><i class="fa fa-heart"></i></a>
+                                                        <form id="favorite-form-{{ $product->id }}" method="POST" action="{{ route('customer.product.favorite',$product->id) }}" style="display: none;">
+                                                            @csrf
+                                                        </form>
+                                                    @endguest
+                                                    
+                                                </li>
                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
@@ -201,3 +211,18 @@
     </section>
     <!-- Product Section End -->
 @endsection
+
+@push('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{!! Toastr::message() !!}
+<script>
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+              toastr.error('{{ $error }}','Error',{
+                  closeButton:true,
+                  progressBar:true,
+               });
+        @endforeach
+    @endif
+</script>
+@endpush

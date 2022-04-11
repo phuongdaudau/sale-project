@@ -27,6 +27,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Warehouse');
     }
+    public function favorite_to_users()
+    {
+        return $this->belongsToMany('App\Models\User')->withTimestamps();
+    }
     public function scopeApproved($query)
     {
         return $query->where('is_approved', 1);

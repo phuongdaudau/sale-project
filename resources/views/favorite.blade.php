@@ -9,10 +9,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>{{$category->name}}</h2>
+                        <h2>Sản Phẩm Yêu Thích</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.html">Trang Chủ</a>
-                            <span>{{$category->name}}</span>
+                            <span>Sản Phẩm Yêu Thích</span>
                         </div>
                     </div>
                 </div>

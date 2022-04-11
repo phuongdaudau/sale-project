@@ -68,6 +68,12 @@
                                     <span>1.201</span>
                                 </li>
                             </ul>
+                            
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                <button class="btn btn-primary btn-lg waves-effect btn-block">ĐĂNG XUẤT </button>
+                                @csrf
+                            </form>
+                            
                         </div>
                     </div>
                 </div>

@@ -68,7 +68,19 @@
                             </div>
                         </div>
                         <a href="#" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        @guest
+                            <a href="{{route('login')}}" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        @else
+                            @if(!Auth::user()->favorite_products->where('pivot.product_id',$product->id)->count() )
+                            <a href="#" onclick="document.getElementById('favorite-form-{{ $product->id }}').submit();" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            @else
+                            <a href="#" onclick="document.getElementById('favorite-form-{{ $product->id }}').submit();"><i class="fa fa-heart"></i></a>
+                            @endif
+                            <form id="favorite-form-{{ $product->id }}" method="POST" action="{{ route('customer.product.favorite',$product->id) }}" style="display: none;">
+                                @csrf
+                            </form>
+                        @endguest
+                       
                         <ul>
                             <li><b>Tình Trạng</b> <span>Còn Hàng</span></li>
                             <li><b>Vận Chuyển</b> <span>3-5 ngày</span></li>
@@ -148,7 +160,16 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="{{ Storage::disk('public')->url('product/'. $images[0]) }}">
                                     <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li>
+                                            @guest
+                                                <a href="{{route('login')}}"><i class="fa fa-heart"></i></a>
+                                            @else
+                                                <a href="#" onclick="document.getElementById('favorite-form-{{ $item->id }}').submit();"><i class="fa fa-heart"></i></a>
+                                                <form id="favorite-form-{{ $item->id }}" method="POST" action="{{ route('customer.product.favorite',$item->id) }}" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            @endguest
+                                        </li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>

@@ -57,4 +57,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Ship');
     }
 
+    public function favorite_products()
+    {
+        return $this->belongsToMany('App\Models\Product')->withTimestamps();
+    }
+
 }
