@@ -9,10 +9,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>{{$tag->name}}</h2>
+                        <h2>Kết Quả Tìm Kiếm Cho - "{{$query}}"</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.html">Trang Chủ</a>
-                            <span>{{$tag->name}}</span>
+                            <span>Sản Phẩm Yêu Thích</span>
                         </div>
                     </div>
                 </div>
@@ -27,6 +27,14 @@
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
+                        <div class="sidebar__item">
+                        <h4>Danh Mục</h4>
+                            <ul>
+                            @foreach($categories as $category)
+                                <li><a href="{{route('category.product', $category->slug)}}">{{$category->name}}</a></li>
+                            @endforeach
+                            </ul>
+                        </div>
                         <div class="sidebar__item sidebar__item__color--option">
                             <h4>Nhãn Dán</h4>
                             @foreach($tags as $tag)
@@ -53,7 +61,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>{{$products->count()}}</span> Sản phẩm </h6>
+                                    <h6><span>{{$products->count()}}</span> Sản phẩm được tìm thấy</h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">
@@ -65,28 +73,43 @@
                         </div>
                     </div>
                     <div class="row">
-                        @foreach($products as $product)
+                        @forelse($products as $product)
                             @php
                                 $image = App\Helpers\Template::getFirstPicture($product->image);
                             @endphp
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{ Storage::disk('public')->url('product/'. $image) }}">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <a href="{{ route('product.details', $product->slug)}}">
-                                    <h6>{{$product->name}}</h6>
-                                    </a>
-                                    <span>{{  number_format($product->price) }},000đ</span>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="{{ Storage::disk('public')->url('product/'. $image) }}">
+                                        <ul class="product__item__pic__hover">
+                                            <li>
+                                                @guest
+                                                    <a href="{{route('login')}}"><i class="fa fa-heart"></i></a>
+                                                @else
+                                                    <a href="#" onclick="document.getElementById('favorite-form-{{ $product->id }}').submit();"><i class="fa fa-heart"></i></a>
+                                                    <form id="favorite-form-{{ $product->id }}" method="POST" action="{{ route('customer.product.favorite',$product->id) }}" style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                @endguest
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <a href="{{ route('product.details', $product->slug)}}">
+                                        <h6>{{$product->name}}</h6>
+                                        </a>
+                                        <span>{{  number_format($product->price) }},000đ</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
+                        @empty
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <strong>Không Tìm Thấy Sản Phẩm Nào :(</strong>
+                                </div>
+                            </div>
+                        @endforelse
                     </div>
                     {{ $products->links('vendor.pagination.bootstrap-4', ['paginator' => $products]) }}
                 </div>

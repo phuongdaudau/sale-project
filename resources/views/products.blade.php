@@ -57,8 +57,7 @@
                             @foreach($tags as $tag)
                             <div class="sidebar__item__color sidebar__item__color--white">
                                 <label for="white">
-                                {{$tag->name}}
-                                    <input type="radio" id="white">
+                                    <a href="{{route('tag.product', $tag->slug)}}">{{$tag->name}}</a>
                                 </label>
                             </div>
                             @endforeach
@@ -137,7 +136,7 @@
                                                     
                                                 </li>
                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                <li><a href="{{route('customer.cart.add', $product->id)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -199,12 +198,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                    {{ $products->links('vendor.pagination.bootstrap-4', ['paginator' => $products]) }}
                 </div>
             </div>
         </div>

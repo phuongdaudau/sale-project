@@ -30,8 +30,8 @@
                         <div class="sidebar__item">
                         <h4>Danh Mục</h4>
                             <ul>
-                            @foreach($categories as $category)
-                                <li><a href="{{route('category.product', $category->slug)}}">{{$category->name}}</a></li>
+                            @foreach($categories as $category1)
+                                <li class="{{($category->slug == $category1->slug) ? 'active' :'' }}"><a href="{{route('category.product', $category1->slug)}}">{{$category1->name}}</a></li>
                             @endforeach
                             </ul>
                         </div>
@@ -40,8 +40,7 @@
                             @foreach($tags as $tag)
                             <div class="sidebar__item__color sidebar__item__color--white">
                                 <label for="white">
-                                {{$tag->name}}
-                                    <input type="radio" id="white">
+                                    <a href="{{route('tag.product', $tag->slug)}}">{{$tag->name}}</a>
                                 </label>
                             </div>
                             @endforeach
@@ -62,7 +61,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>{{$products->count()}}</span> Sản phẩm được tìm thấy</h6>
+                                    <h6><span>{{$products->count()}}</span> Sản phẩm </h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">
@@ -106,12 +105,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                    {{ $products->links('vendor.pagination.bootstrap-4', ['paginator' => $products]) }}
                 </div>
             </div>
         </div>

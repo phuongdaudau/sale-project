@@ -12,6 +12,8 @@ Route::get('product/{slug}', [App\Http\Controllers\ProductController::class, 'de
 Route::get('category/{slug}', [App\Http\Controllers\ProductController::class, 'productByCategory'])->name('category.product');
 Route::get('tag/{slug}', [App\Http\Controllers\ProductController::class, 'productByTag'])->name('tag.product');
 
+Route::get('search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+
 Route::group(['as' => 'master.', 'prefix' => 'master',  'middleware' => 'master'], function () {
     Route::get('dashboard', [App\Http\Controllers\Master\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('tag', App\Http\Controllers\Master\TagController::class);
@@ -55,6 +57,8 @@ Route::group(['as' => 'customer.', 'prefix' => 'customer', 'middleware' => 'cust
     Route::put('password-update', [ App\Http\Controllers\UserController::class, 'updatePassword'])->name('password.update');
     Route::post('favorite/{product}/add', [App\Http\Controllers\UserController::class, 'addFavorite'])->name('product.favorite');
     Route::get('favorite', [App\Http\Controllers\UserController::class, 'showFavorite'])->name('favorite.show');
+
+    Route::get('addCart/{id}', [App\Http\Controllers\CartController::class, 'addCart'])->name('cart.add');
 });
 
 Auth::routes();

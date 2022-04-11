@@ -37,5 +37,14 @@ class HomeController extends Controller
         return view('contact');
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'LIKE', "%$query%")->approved()->published()->paginate(9);
+        $categories = Category::latest()->get();
+        $tags = Tag::latest()->get();
+        return view('search', compact('categories', 'tags','products', 'query'));
+    }
+
 }
 // sản phẩm nổi bật: 4 tag nhiều sp nhiều view nhất, lấy mỗi tag 2 sản phẩm nổi bật nhất(view cao nhất)

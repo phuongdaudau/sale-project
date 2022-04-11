@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index(){
         $categories = Category::latest()->get();
-        $products = Product::latest()->approved()->published()->get();
+        $products = Product::latest()->approved()->published()->paginate(9);
         $tags = Tag::latest()->get();
         $latest_products = Product::latest()->approved()->published()->take(6)->get()->toArray();
         $best_sale_products = Product::withCount('orders')->approved()->published()->orderBy('orders_count', 'desc')->take(5)->get();
@@ -38,14 +38,14 @@ class ProductController extends Controller
         $categories = Category::latest()->get();
         $tags = Tag::latest()->get();
         $category = Category::where('slug', $slug)->first();
-        $products = $category->products()->approved()->published()->get();
+        $products = $category->products()->approved()->published()->paginate(9);
         return view('category', compact('tags','categories','category', 'products'));
     }
     
     public function productByTag($slug){
         $tags = Tag::latest()->get();
         $tag = Tag::where('slug', $slug)->first();
-        $products = $tag->products()->approved()->published()->get();
+        $products = $tag->products()->approved()->published()->paginate(9);
         return view('tag', compact('tags','tag', 'products'));
     }
 }
