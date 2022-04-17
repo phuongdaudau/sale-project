@@ -63,11 +63,11 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input id="quantity-item-{{$product->id}}" type="text" value="1">
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
+                        <a onclick="addCartFromDetail({{$product->id}})" href="javascript:" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
                         @guest
                             <a href="{{route('login')}}" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         @else

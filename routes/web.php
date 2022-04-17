@@ -57,8 +57,16 @@ Route::group(['as' => 'customer.', 'prefix' => 'customer', 'middleware' => 'cust
     Route::put('password-update', [ App\Http\Controllers\UserController::class, 'updatePassword'])->name('password.update');
     Route::post('favorite/{product}/add', [App\Http\Controllers\UserController::class, 'addFavorite'])->name('product.favorite');
     Route::get('favorite', [App\Http\Controllers\UserController::class, 'showFavorite'])->name('favorite.show');
+    
+});
 
+Route::group(['as' => 'customer.', 'middleware' => 'customer'], function () {
     Route::get('addCart/{id}', [App\Http\Controllers\CartController::class, 'addCart'])->name('cart.add');
+    Route::get('deleteItemCart/{id}', [App\Http\Controllers\CartController::class, 'deleteItemCart'])->name('cart.delete');
+    Route::get('listCart', [App\Http\Controllers\CartController::class, 'listCart'])->name('cart.list');
+    Route::get('deleteListCart/{id}', [App\Http\Controllers\CartController::class, 'deleteListCart'])->name('list-cart.delete');
+    Route::get('saveQtyItemCart/{id}/{quantity}', [App\Http\Controllers\CartController::class, 'saveQtyItemCart'])->name('list-cart.delete');
+    Route::get('product/addCartFromDetail/{id}/{quantity}', [App\Http\Controllers\CartController::class, 'addCartFromDetail'])->name('addCartFromDetail');
 });
 
 Auth::routes();

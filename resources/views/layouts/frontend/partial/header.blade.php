@@ -18,7 +18,7 @@
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="img/vn.png" alt="">
+                                <img src="{{ asset('assets/frontend/img/vn.png') }}" alt="">
                                 <div>Tiếng Việt</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
@@ -74,14 +74,58 @@
                             @else
                             <li><a href="{{route('customer.favorite.show')}}"><i class="fa fa-heart"></i> <span>{{Auth::user()->favorite_products->where('pivot.user_id',Auth::id())->count()}}</span></a></li>
                             <li class="cart-icon"><a href="#">
-                                <i class="fa fa-shopping-bag"></i> <span>0</span>
+                                <i class="fa fa-shopping-bag"></i> 
+                                @if(Session::has("Cart") !=null)
+                                    <span id="total-quantity-show">{{Session::get("Cart")->totalQuantity}}</span>
+                                @else
+                                    <span id="total-quantity-show">0</span>
+                                @endif
                                 </a>
+                                <div class="cart-hover">
+                                    <div id="change-item-cart">
+                                    @if(Session::has("Cart") !=null)
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                                @foreach(Session::get("Cart")->products as $item)
+                                                @php 
+                                                    $image = App\Helpers\Template::getFirstPicture($item['productInfo']->image);
+                                                @endphp
+                                                <tr>
+                                                    <td class="si-pic"><img src="{{ Storage::disk('public')->url('product/'. $image) }}" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{ number_format($item['productInfo']->price) }},000đ x {{$item['quantity']}}</p>
+                                                            <h6>{{$item['productInfo']->name }}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i class="fa fa-times" onclick="deleteItemCart({{$item['productInfo']->id}})"></i>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="select-total">
+                                        <span>tổng:</span>
+                                        <h5>{{  number_format(Session::get("Cart")->totalPrice) }},000đ</h5>
+                                    </div>
+                                    @endif
+                                    </div>
+                                    <div class="select-button">
+                                        <a href="{{route('customer.cart.list')}}" class="primary-btn view-card">XEM GIỎ HÀNG</a>
+                                        <a href="#" class="primary-btn checkout-btn">THANH TOÁN</a>
+                                    </div>
+                                </div>
                             </li>
                             @endguest
             
                             
                         </ul>
-                        <div class="header__cart__price">Tổng: <span>1.5000.000</span></div>
+                        @if(Session::has("Cart") !=null)
+                        <div class="header__cart__price">Tổng: <span>{{  number_format(Session::get("Cart")->totalPrice) }},000đ</span></div>
+                        @endif
                     </div>
                 </div>
             </div>
