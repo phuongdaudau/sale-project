@@ -20,6 +20,12 @@ Route::group(['as' => 'master.', 'prefix' => 'master',  'middleware' => 'master'
     Route::resource('category', App\Http\Controllers\Master\CategoryController::class);
     Route::resource('warehouse', App\Http\Controllers\Master\WarehouseController::class);
     Route::resource('ship', App\Http\Controllers\Master\ShipController::class);
+
+    Route::get('ship/delivery-fee/add', [App\Http\Controllers\Master\DeliveryFeeController::class, 'addDeliveryFee'])->name('ship.addFee');
+    Route::get('ship/delivery-fee/loadDistrict/{idCity}', [App\Http\Controllers\Master\DeliveryFeeController::class, 'loadDistrict']);
+    Route::get('ship/delivery-fee/loadCommune/{idDistrict}', [App\Http\Controllers\Master\DeliveryFeeController::class, 'loadCommune']);
+
+
     Route::resource('user', App\Http\Controllers\Master\UserController::class);
     Route::put('password-update', [ App\Http\Controllers\Master\UserController::class, 'updatePassword'])->name('password.update');
     Route::put('update-role/{id}', [ App\Http\Controllers\Master\UserController::class, 'updateRole'])->name('user.updateRole');

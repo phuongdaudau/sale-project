@@ -78,6 +78,8 @@
 <!-- Custom Js -->
 <script src="{{ asset('assets/backend/js/admin.js') }}"></script>
 
+<script src="{{ asset('assets/frontend/js/myjs.js') }}"></script>
+
 
 <!-- Demo Js -->
 <script src="{{ asset('assets/backend/js/demo.js') }}"></script>

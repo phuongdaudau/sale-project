@@ -1,3 +1,4 @@
+//customer cart
 function AddCart(id) {
     $.ajax({
         url: 'addCart/' + id,
@@ -74,5 +75,28 @@ function renderListCart(respone) {
             }
         }
         $button.parent().find('input').val(newVal);
+    });
+}
+
+// delivery fee
+function loadDistrict(idCity) {
+    $.ajax({
+        url: 'loadDistrict/' + idCity,
+        type: 'GET',
+    }).done(function (respone) {
+        //console.log(respone);
+
+        $(".load-district").empty();
+        $(".load-district").html(respone);
+    });
+}
+function loadCommune(idDistrict) {
+    $.ajax({
+        url: 'loadCommune/' + idDistrict,
+        type: 'GET',
+    }).done(function (respone) {
+
+        $(".load-commune").empty();
+        $(".load-commune").html(respone);
     });
 }

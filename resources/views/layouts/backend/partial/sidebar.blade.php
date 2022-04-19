@@ -70,11 +70,20 @@
                 </a>
             </li>
             <li class="{{ Request::is('master/ship*') ? 'active' : ''}}">
-                <a href="{{ route('master.ship.index')}}">
+                <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">directions_car</i>
-                    <span>Vận chuyển</span>
+                    <span>Vận Chuyển</span>
                 </a>
+                <ul class="ml-menu">
+                    <li class="{{ Request::is('master/ship') ? 'active' : ''}}" >
+                        <a href="{{ route('master.ship.index')}}">Đơn Vận Chuyển</a>
+                    </li>
+                    <li class="{{ Request::is('master/ship/delivery-fee*') ? 'active' : ''}}" >
+                        <a href="{{ route('master.ship.addFee')}}">Phí Vận Chuyển</a>
+                    </li>
+                </ul>
             </li>
+
             <li class="{{ Request::is('master/user*') ? 'active' : '' }}">
                 <a href="{{ route('master.user.index')}}">    
                     <i class="material-icons">account_circle</i>
@@ -140,6 +149,7 @@
                     <span>Vận chuyển</span>
                 </a>
             </li>
+            
             <li class="header">System</li>
             <li class="">
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

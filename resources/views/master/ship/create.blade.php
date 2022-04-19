@@ -19,7 +19,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line {{ $errors->has('users') ? 'focused error' : '' }}">
                                     <label for="user">Chọn Shipper</label>
-                                    <select name="user" id="user" class="form-control show-tick">
+                                    <select name="user" id="user" class="form-control show-tick" data-live-search="true">
                                         @foreach($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach

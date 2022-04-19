@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ship;
 use App\Models\User;
+use App\Models\City;
 use App\Models\Order;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -81,4 +82,5 @@ class ShipController extends Controller
         Toastr::success('Xóa nhãn thành công!', 'success');
         return redirect()->back();
     }
+
 }
