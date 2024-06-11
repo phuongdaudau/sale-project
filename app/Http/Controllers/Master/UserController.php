@@ -40,6 +40,7 @@ class UserController extends Controller
     public function updateRole(Request $request, $id){
         $user = User::find($id);
         $user->role_id = $request->role_id;
+        $user->status = $request->status;
         $user->save();
         return redirect()->back();
 

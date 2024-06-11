@@ -7,7 +7,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
 Route::get('products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
-Route::get('product/{slug}', [App\Http\Controllers\ProductController::class, 'details'])->name('product.details');
+Route::get('bai-viet/{slug}', [App\Http\Controllers\ProductController::class, 'details'])->name('product.details');
+Route::post('bai-viet/about/image', [App\Http\Controllers\HomeController::class, 'tinymce'])->name('product.tinymce');
 
 Route::get('category/{slug}', [App\Http\Controllers\ProductController::class, 'productByCategory'])->name('category.product');
 Route::get('tag/{slug}', [App\Http\Controllers\ProductController::class, 'productByTag'])->name('tag.product');

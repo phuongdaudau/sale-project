@@ -30,6 +30,7 @@
                                     <th>Email</th>
                                     <th>SĐT</th>
                                     <th>Phân Loại</th>
+                                    <th>Trạng thái </th>
                                     <th>Ngày Tạo</th>
                                     <th>Hành Động</th>
                                 </tr>
@@ -42,6 +43,7 @@
                                     <th>Email</th>
                                     <th>SĐT</th>
                                     <th>Phân Loại</th>
+                                    <th>Trạng thái </th>
                                     <th>Ngày Tạo</th>
                                     <th>Hành Động</th>
                                 </tr>
@@ -55,15 +57,16 @@
                                             <td>{{ $user->email}}</td>
                                             <td>{{ $user->phone}}</td>
                                             <td>{{  App\Helpers\Template::role($user->role_id) }}</td>
+                                            <td>{{  App\Helpers\Template::status($user->status) }}</td>
                                             <td>{{ $user->created_at }}</td>
                                             <td class ="text-center">
-                                            <a href="{{ route('master.user.edit', $user->id)}} " class= "btn btn-info waves-effect">
+                                                <a href="{{ route('master.user.edit', $user->id)}} " class= "btn btn-info waves-effect m-r-5">
                                                     <i class ="material-icons">edit</i>
                                                 </a>
-                                                <a href="{{ route('master.user.show', $user->id)}} " class= "btn btn-success waves-effect">
+                                                <a href="{{ route('master.user.show', $user->id)}} " class= "btn btn-success waves-effect m-r-5">
                                                     <i class ="material-icons">visibility</i>
                                                 </a>
-                                                <button class= "btn btn-danger waves-effect" type="button" onclick="deleteuser({{ $user->id }})">
+                                                <button class= "btn btn-danger waves-effect m-r-5" type="button" onclick="deleteuser({{ $user->id }})">
                                                     <i class="material-icons">delete</i>
                                                 </button>
                                                 <form id="delete-form-{{ $user->id }}" action=" {{ route('master.user.destroy', $user->id)}}" method="POST" style="display: none;">
@@ -103,7 +106,7 @@
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                   confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                  cancelButton: 'btn btn-danger m-r-5'
                 },
                 buttonsStyling: false
               })

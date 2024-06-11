@@ -39,10 +39,10 @@
                     <span>Thống kê</span>
                 </a>
             </li>
-            <li class="{{ Request::is('master/tag*') ? 'active' : ''}}">
-                <a href="{{ route('master.tag.index')}}">
-                    <i class="material-icons">label</i>
-                    <span>Nhãn Dán</span>
+            <li class="{{ Request::is('master/user*') ? 'active' : '' }}">
+                <a href="{{ route('master.user.index')}}">    
+                    <i class="material-icons">account_circle</i>
+                    <span>Người dùng</span>
                 </a>
             </li>
             <li class="{{ Request::is('master/category*') ? 'active' : ''}}">
@@ -54,10 +54,16 @@
             <li class="{{ Request::is('master/product*') ? 'active' : ''}}">
                 <a href="{{ route('master.product.index')}}">
                     <i class="material-icons">library_books</i>
-                    <span>Sản Phẩm</span>
+                    <span>Bài viết</span>
                 </a>
             </li>
-            <li class="{{ Request::is('master/order*') ? 'active' : ''}}">
+            <li class="{{ Request::is('master/tag*') ? 'active' : ''}}">
+                <a href="{{ route('master.tag.index')}}">
+                    <i class="material-icons">label</i>
+                    <span>Nhãn Dán</span>
+                </a>
+            </li>
+            <!-- <li class="{{ Request::is('master/order*') ? 'active' : ''}}">
                 <a href="{{ route('master.order.index')}}">
                     <i class="material-icons">content_paste</i>
                     <span>Đơn Hàng</span>
@@ -82,14 +88,7 @@
                         <a href="{{ route('master.ship.addFee')}}">Phí Vận Chuyển</a>
                     </li>
                 </ul>
-            </li>
-
-            <li class="{{ Request::is('master/user*') ? 'active' : '' }}">
-                <a href="{{ route('master.user.index')}}">    
-                    <i class="material-icons">account_circle</i>
-                    <span>Người dùng</span>
-                </a>
-            </li>
+            </li> -->
             <li class="header">Hệ thống</li>
             <li class="">
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

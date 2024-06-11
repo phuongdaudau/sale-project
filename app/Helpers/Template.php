@@ -148,11 +148,33 @@ class Template{
     }
 
     public static function checkStatus($status){
-        $arr = ['0' => 'Bị hủy', '1' => 'Lên đơn', '2' => 'Đóng gói', '3' => 'Nhập kho ', '4' => 'Xuất kho ', '5' => 'Đang giao', '6' => 'Đã giao'];
+        $arr = ['1' => 'Đã kích hoạt', '2' => 'Chưa kích hoạt'];
         $xhtml = '';
         foreach ($arr as $key => $value)
             if ($key == $status) {
                 $xhtml .= '<option value="' . $status . '" selected>' . $arr[$status] . '</option>';
+            } else {
+                $xhtml .= '<option value="' . $key . '">' . $value . '</option>';
+            }
+        echo $xhtml;
+    }
+    public static function hotTag($id){
+        $arr = ['1' => 'Nhãn bình thường', '2' => 'Nhãn nổi bật'];
+        $xhtml = '';
+        foreach ($arr as $key => $value)
+            if ($key == $id) {
+                $xhtml .= '<option value="' . $id . '" selected>' . $arr[$id] . '</option>';
+            } else {
+                $xhtml .= '<option value="' . $key . '">' . $value . '</option>';
+            }
+        echo $xhtml;
+    }
+    public static function checkParentCat($id, $arr){
+        $id = $id == null ? 0 : $id;
+        $xhtml = '';
+        foreach ($arr as $key => $value)
+            if ($key == $id) {
+                $xhtml .= '<option value="' . $id . '" selected>' . $arr[$id] . '</option>';
             } else {
                 $xhtml .= '<option value="' . $key . '">' . $value . '</option>';
             }
@@ -195,6 +217,31 @@ class Template{
                 break;
         }
         return $role;
+    }
+    public static function tag($id){
+        $id = $id ? $id : '1';
+        $tag ='';
+        switch ($id) {
+            case '1':
+                $tag = 'Nhãn bình thường';
+                break;
+            case '2':
+                $tag = 'Nhãn nổi bật';
+                break;
+        }
+        return $tag;
+    }
+    public static function status($id){
+        $status ='';
+        switch ($id) {
+            case '1':
+                $status = 'Đã kích hoạt';
+                break;
+            case '2':
+                $status = 'Chưa kích hoạt';
+                break;
+        }
+        return $status;
     }
 
     public static function checkRole($role){

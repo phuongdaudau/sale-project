@@ -9,12 +9,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('master.tag.create') }}">
-                <i class="material-icons">add</i>
-                <span>Thêm Nhãn Mới</span>
-            </a>
-        </div>
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -32,7 +26,7 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>Tên</th>
-                                    <th>Số Sản Phẩm</th>
+                                    <th>Phân loại nhãn</th>
                                     <th>Ngày tạo</th>
                                     <th>Ngày Chỉnh Sửa</th>
                                     <th>Hành Động</th>
@@ -42,7 +36,7 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>Tên</th>
-                                    <th>Số Sản Phẩm</th>
+                                    <th>Phân loại nhãn</th>
                                     <th>Ngày tạo</th>
                                     <th>Ngày Chỉnh Sửa</th>
                                     <th>Hành Động</th>
@@ -53,7 +47,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $tag->name }}</td>
-                                            <td>{{ $tag->products->count()}}</td>
+                                            <td>{{ App\Helpers\Template::tag($tag->hot_tag) }}</td>
                                             <td>{{ $tag->created_at }}</td>
                                             <td>{{ $tag->updated_at }}</td>
                                             <td class ="text-center">

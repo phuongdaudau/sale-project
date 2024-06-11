@@ -21,12 +21,42 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-        return view('master.product.index', compact('products'));
+        $categories = Category::pluck('name', 'id');
+        return view('master.product.index', compact('products', 'categories'));
     }
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::get()->toArray();
+        $parent = [];
+        $child = [];
+        $res = [];
+        foreach($categories as $item) {
+            if($item['parent_id'] == null) {
+                $parent[$item['id']] = $item['name'];
+            } else {
+                if(isset($child[$item['parent_id']])) {
+                    $child[$item['parent_id']][$item['id']] =  '|---' . $item['name'];
+                } else {
+                    $child[$item['parent_id']] = [$item['id'] => '|---' . $item['name']];
+                }
+            }
+        }
+        ksort($parent);
+
+        foreach($parent as $id => $item) {
+            $childs = [];
+            $res[$id] = $item;
+            if(isset($child[$id])) {
+                $childs = $child[$id];
+                ksort($childs);
+                foreach($childs as $idChild => $val) {
+                    $res[$idChild] = $val;
+                }
+            }
+        }
+        $categories = $res;
+
         $tags = Tag::all();
         $warehouses = Warehouse::select('*')->where('type', '=', '1')->get();
         return view('master.product.create', compact('categories', 'tags', 'warehouses'));
@@ -35,27 +65,33 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'     => 'required',
-            'weight'     => 'required',
-            'price'     => 'required',
-            'quantity'     => 'required',
-            'image'     => 'required',
-            'categories' => 'required',
-            'tags'      => 'required',
-            'warehouse'      => 'required',
-            'about'      => 'required',
+            'name'              => 'required',
+            'description'       => 'required',
+            'about'             => 'required',
+            'category_id'       => 'required',
+            'image'             => 'required',
+            'tags'              => 'required',
         ]);
-        
+
+        $tags = explode(',', $request->tags);
+        $tagsId = [];
+        foreach ($tags as $item) {
+            $tagName = ltrim($item);
+            $tag = new Tag();
+            $tag->name = $tagName;
+            $tag->slug = Str::slug($tagName);
+            $tag->save();
+            $tagsId[] = $tag->id;
+        }
+
         $product = new Product();
         $product->user_id = Auth::id();
         $product->name = $request->name; 
         $slug = Str::slug($request->name);
         $product->slug = $slug;
         $product->about = $request->about;
-        $product->weight = $request->weight;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;
-        $product->warehouse_id = $request->warehouse;
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
 
         if($request->hasfile('image')){
             $imagename = '';
@@ -67,7 +103,7 @@ class ProductController extends Controller
                     Storage::disk('public')->makeDirectory('product');
                 }
                 //save resize image
-                $productImage = Image::make($image)->resize(540, 540)->save($imageName . '.' . $image->getClientOriginalExtension());
+                $productImage = Image::make($image)->save($imageName . '.' . $image->getClientOriginalExtension());
                 Storage::disk('public')->put('product/' . $imageName, $productImage);
 
                 $imagename = $imagename. ',' . $imageName;
@@ -80,52 +116,92 @@ class ProductController extends Controller
         } else { 
             $product->status = false;
         }
-        $product->is_approved = true;
+        $product->is_approved = false;
         $product->save();
 
-        $product->categories()->attach($request->categories);
-        $product->tags()->attach($request->tags);
+        $product->tags()->attach($tagsId);
 
-        Toastr::success(' Lưu sản phẩm thành công!', 'Success');
+        Toastr::success(' Lưu bài viết thành công!', 'Success');
         return redirect()->route('master.product.index');
     }
 
     public function show(Product $product)
     {
-        return view('master.product.show', compact('product'));
+        $categories = Category::pluck('name', 'id');
+        return view('master.product.show', compact('product', 'categories' ));
     }
 
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        $tags = Tag::all();
-        $warehouses = Warehouse::select('*')->where('type', '=', '1')->get();
-        return view('master.product.edit', compact('product', 'categories', 'tags', 'warehouses'));
+        $tagName = $product->tags->pluck('name')->toArray();
+        $tags = implode(', ', $tagName);
+        $categories = Category::get()->toArray();
+        $parent = [];
+        $child = [];
+        $res = [];
+        foreach($categories as $item) {
+            if($item['parent_id'] == null) {
+                $parent[$item['id']] = $item['name'];
+            } else {
+                if(isset($child[$item['parent_id']])) {
+                    $child[$item['parent_id']][$item['id']] =  '|---' . $item['name'];
+                } else {
+                    $child[$item['parent_id']] = [$item['id'] => '|---' . $item['name']];
+                }
+            }
+        }
+        ksort($parent);
+
+        foreach($parent as $id => $item) {
+            $childs = [];
+            $res[$id] = $item;
+            if(isset($child[$id])) {
+                $childs = $child[$id];
+                ksort($childs);
+                foreach($childs as $idChild => $val) {
+                    $res[$idChild] = $val;
+                }
+            }
+        }
+        $categories = $res;
+
+        return view('master.product.edit', compact('product', 'categories', 'tags'));
     }
 
     public function update(Request $request, Product $product)
     {
         $this->validate($request, [
-            'name'     => 'required',
-            'weight'     => 'required',
-            'price'     => 'required',
-            'quantity'     => 'required',
-            'image'     => 'image',
-            'categories' => 'required',
-            'tags'      => 'required',
-            'warehouse'      => 'required',
-            'about'      => 'required',
+            'name'              => 'required',
+            'description'       => 'required',
+            'about'             => 'required',
+            'category_id'       => 'required',
+            'tags'              => 'required',
         ]);
-    
+
+        $originTag = $product->tags->pluck('name')->toArray();
+        $tags = explode(', ', $request->tags);
+        $tagsId = [];
+
+        if(array_diff($tags, $originTag)) {
+            $originId = $product->tags->pluck('id')->toArray();
+            Tag::destroy($originId);
+            foreach ($tags as $item) {
+                $tagName = ltrim($item);
+                $tag = new Tag();
+                $tag->name = $tagName;
+                $tag->slug = Str::slug($tagName);
+                $tag->save();
+                $tagsId[] = $tag->id;
+            }
+        }
+
         $product->user_id = Auth::id();
-        $product->name = $request->name; 
+        $product->name = $request->name;
         $slug = Str::slug($request->name);
         $product->slug = $slug;
         $product->about = $request->about;
-        $product->weight = $request->weight;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;
-        $product->warehouse_id = $request->warehouse;
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
 
         if($request->hasfile('image')){
             $imagename = '';
@@ -141,7 +217,7 @@ class ProductController extends Controller
                     Storage::disk('public')->delete('product/' . $product->image);
                 }
                     //save resize image
-                $productImage = Image::make($image)->resize(540, 540)->save($imageName . '.' . $image->getClientOriginalExtension());
+                $productImage = Image::make($image)->save($imageName . '.' . $image->getClientOriginalExtension());
                 Storage::disk('public')->put('product/' . $imageName, $productImage);
 
                 $imagename = $imagename. ',' . $imageName;
@@ -157,10 +233,9 @@ class ProductController extends Controller
         $product->is_approved = true;
         $product->update();
 
-        $product->categories()->sync($request->categories);
-        $product->tags()->sync($request->tags);
+        $product->tags()->sync($tagsId);
 
-        Toastr::success(' Cập nhật sản phẩm thành công!', 'Success');
+        Toastr::success(' Cập nhật bài viết thành công!', 'Success');
         return redirect()->route('master.product.index');
     }
 
@@ -172,7 +247,7 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->tags()->detach();
         $product->delete();
-        Toastr::success('Xóa sản phẩm thành công!', 'Success');
+        Toastr::success('Xóa bài viết thành công!', 'Success');
         return redirect()->back();
     }
 
@@ -182,9 +257,9 @@ class ProductController extends Controller
         if ($product->is_approved == false) {
             $product->is_approved = true;
             $product->save();
-            Toastr::success('Xác nhận sản phẩm thành công :)', 'Success');
+            Toastr::success('Xác nhận bài viết thành công :)', 'Success');
         } else {
-            Toastr::info('Sản phẩm đã được xác nhận :)', 'Info');
+            Toastr::info('bài viết đã được xác nhận :)', 'Info');
         }
         return redirect()->back();
     }

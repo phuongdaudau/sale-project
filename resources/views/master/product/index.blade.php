@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Sản Phẩm')
+@section('title','Bài viết')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -10,9 +10,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('master.product.create') }}">
+            <a class="btn btn-primary waves-effect m-b-15" href="{{ route('master.product.create') }}">
                 <i class="material-icons">add</i>
-                <span>Thêm Sản Phẩm</span>
+                <span>Thêm Bài Viết </span>
             </a>
         </div>
         <!-- Exportable Table -->
@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            DANH SÁCH SẢN PHẨM
+                            DANH SÁCH BÀI VIẾT
                             <span class="badge bg-blue">{{$products->count()}}</span>
                         </h2>
                     </div>
@@ -32,25 +32,23 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên</th>
-                                    <th>Khối lượng</th>
-                                    <th>Giá</th>
-                                    <th>QTY</th>
-                                    <th>Đã Duyệt</th>
-                                    <th>Kho hàng</th>
-                                    <th>Created At</th>
+                                    <th>Mô tả ngắn</th>
+                                    <th>Danh mục</th>
+                                    <th>Lượt xem</th>
+                                    <th>Trang thái</th>
+                                    <th>Ngày tạo</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                <th>ID</th>
+                                    <th>ID</th>
                                     <th>Tên</th>
-                                    <th>Khối lượng</th>
-                                    <th>Giá</th>
-                                    <th>QTY</th>
-                                    <th>Đã Duyệt</th>
-                                    <th>Kho hàng</th>
-                                    <th>Created At</th>
+                                    <th>Mô tả ngắn</th>
+                                    <th>Danh mục</th>
+                                    <th>Lượt xem</th>
+                                    <th>Trang thái</th>
+                                    <th>Ngày tạo</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
@@ -58,19 +56,16 @@
                                     @foreach($products as $key=>$product)
                                         <tr>
                                             <td>{{ $product->id }}</td>
-                                            <td>{{  $product->name }}</td>
-                                            <td>{{ $product->weight }}</td>
-                                            <td>{{  number_format($product->price) }},000</td>
-                                            <td>{{ $product->quantity }}</td>
+                                            <td style="width: 20%">{{ $product->name }}</td>
+                                            <td style="width: 20%">{{ $product->description }}</td>
+                                            <td>{{ $categories[$product->category_id] }}</td>
+                                            <td>{{ $product->view_count }}</td>
                                             <td>
                                                 @if ($product->is_approved == true)
-                                                    <span class="badge bg-blue">Checked</span>
+                                                    <span class="badge bg-blue">Đã duyệt</span>
                                                 @else
-                                                    <span class="badge bg-pink">Checking</span>
+                                                    <span class="badge bg-pink">Đang đợi duyệt</span>
                                                 @endif
-                                            </td>
-                                            <td>
-                                                {{ $product->warehouse->name}}
                                             </td>
                                             <td>{{ $product->created_at }}</td>
                                             <td class ="text-center">

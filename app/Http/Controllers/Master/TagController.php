@@ -53,8 +53,7 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
         $tag = Tag::find($id);
-        $tag->name = $request->name;
-        $tag->slug = Str::slug($request->name);
+        $tag->hot_tag = $request->hot_tag;
         $tag->save();
         Toastr::success('Chỉnh sửa nhãn thành công!', 'success');
         return redirect()->route('master.tag.index');

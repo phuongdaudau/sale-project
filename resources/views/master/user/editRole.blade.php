@@ -26,14 +26,23 @@
                                     @endphp
                                     {!! $role!!}
                                     </select> 
-                                </div> 
+                                </div>
+                                <div class="m-t-15 form-line {{ $errors->has('status') ? 'focused error' : '' }}">
+                                    <label for="status">Trạng thái </label>
+                                    <select name="status" id="status" class="form-control show-tick">
+                                        @php
+                                            $status= App\Helpers\Template::checkStatus($user->status);
+                                        @endphp
+                                        {!! $status!!}
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <a  class="btn btn-danger m-t-15 waves-effect" href="{{ route('master.user.index') }}">TRỞ LẠI</a>
+            <a  class="btn btn-danger m-t-15 m-r-5 waves-effect" href="{{ route('master.user.index') }}">TRỞ LẠI</a>
             <button type="submit" class="btn btn-primary m-t-15 waves-effect">LƯU</button>
         </form>
     </div>

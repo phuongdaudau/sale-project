@@ -2729,7 +2729,9 @@
 .demo-button-sizes .btn {
   margin-bottom: 5px;
 }
-
+.waves-effect {
+  margin-right: 10px;
+}
 .icon-button-demo button {
   margin-right: 5px;
   margin-bottom: 12px;

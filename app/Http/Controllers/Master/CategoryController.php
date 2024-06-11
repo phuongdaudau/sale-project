@@ -23,41 +23,30 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('master.category.create');
+        $parentIds = Category::whereNull('parent_id')->pluck('name', 'id');
+        $res = [];
+        $res[] = 'Chọn danh mục cha';
+        foreach($parentIds as $key => $val) {
+            $res[$key] = $val;
+        }
+        return view('master.category.create', [
+            'parentIds' => $res,
+        ]);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:categories',
-            'image' => 'required|mimes:jpeg,bmp,png,jpg'
+            'name' => 'required',
+            'parent_id'     => 'required',
         ]);
-        $image = $request->file('image');
 
         $slug = Str::slug($request->name);
 
-        if (isset($image)) {
-            $currentDate = Carbon::now()->toDateString();
-            $imageName = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            if (!Storage::disk('public')->exists('category')) {
-                Storage::disk('public')->makeDirectory('category');
-            }
-            $category = Image::make($image)->resize(270, 270)->save($imageName . '.' . $image->getClientOriginalExtension());
-            Storage::disk('public')->put('category/' . $imageName, $category);
-            if (!Storage::disk('public')->exists('category/banner')) {
-                Storage::disk('public')->makeDirectory('category/banner');
-            }
-
-            $banner = Image::make($image)->resize(1349, 349)->save($imageName . '.' . $image->getClientOriginalExtension());
-            Storage::disk('public')->put('category/banner/' . $imageName, $banner);
-        } else {
-            $imageName = 'default.png';
-        }
         $category = new Category();
         $category->name = $request->name;
+        $category->parent_id = $request->parent_id;
         $category->slug = $slug;
-        $category->image = $imageName;
         $category->save();
         Toastr::success('Category Successfully Saved :)', 'Success');
         return redirect()->route('master.category.index');
@@ -71,8 +60,15 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
+        $parentIds = Category::whereNull('parent_id')->pluck('name', 'id');
+        $res = [];
+        $res[] = 'Chọn danh mục cha';
+        foreach($parentIds as $key => $val) {
+            $res[$key] = $val;
+        }
         return view('master.category.edit', [
             'category' => $category,
+            'parentIds' => $res,
         ]);
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','product')
+@section('title','Bài viết')
 
 @push('css')
 
@@ -11,16 +11,16 @@
         <!-- Vertical Layout | With Floating Label -->
         <a href="{{ route('master.product.index') }}" class="btn btn-danger waves-effect">QUAY LẠI</a>
         @if ($product->is_approved == false)
-            <button type="button" class="btn btn-success waves-effect pull-right" onclick="approveproduct({{ $product->id }})">
+            <button type="button" class="btn btn-success waves-effect pull-right m-b-15" onclick="approveproduct({{ $product->id }})">
                 <i class="material-icons">done</i>
-                <span>XÁC NHẬN</span>
+                <span>DUYỆT BÀI VIẾT</span>
             </button>
             <form method="POST" action="{{ route('master.product.approve',$product->id) }}" id="approval-form" style="display: none">
                 @csrf
                 @method('PUT')
             </form>
         @else
-            <button type="button" class="btn btn-success pull-right" disabled>
+            <button type="button" class="btn btn-success pull-right m-b-15" disabled>
                 <i class="material-icons">done</i>
                 <span>XÁC NHẬN</span>
             </button>
@@ -39,65 +39,87 @@
                                     vào {{ $product->created_at->toFormattedDateString()}}
                                 </small>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-indigo">
+                            <h2>
+                                Mô tả ngắn
+                            </h2>
+                        </div>
                         <div class="body">
-                            <div class="demo-masked-input">
-                                <div class="row clearfix">
-                                    <div class="col-md-3">
-                                        <b>Khối lượng (kg)</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">date_range</i>
-                                            </span>
-                                            <div class="form-line">
-                                                <p class="form-control date">  {{$product->weight}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <b>Giá (VND)</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">attach_money</i>
-                                            </span>
-                                            <div class="form-line">
-                                            <p class="form-control date">  {{number_format($product->price)}},000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <b>Số lượng (cái)</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">access_time</i>
-                                            </span>
-                                            <div class="form-line">
-                                            <p class="form-control date">  {{$product->quantity}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <b>Trạng thái</b>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">date_range</i>
-                                            </span>
-                                            <div class="form-line">
-                                            <p class="form-control date"> Còn hàng</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {!! $product->description !!}
+                        </div>
+                    </div>
+                <div class="card">
+                    <div class="header bg-indigo">
+                        <h2>
+                            Nội dung bài viết
+                        </h2>
+                    </div>
+                    <div class="body">
+                    {!! $product->about !!}
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header bg-blue">
+                            <h2>
+                                Danh Mục
+                            </h2>
+                        </div>
+
+                        <div class="body">
+                            <span class="label bg-cyan" style="font-size: 16px">{{ $categories[$product->category_id] }}</span>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>
+                                Nhãn dán
+                            </h2>
+                        </div>
+                        <div class="body">
+                            @foreach ($product->tags as $tag)
+                                <span class="label bg-green" style="font-size: 16px">#{{ $tag->name }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if ($product->status == 1)
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="header bg-green">
+                                <h2>
+                                    Link bài viết nội bộ
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <a href="{{ route('product.details', $product->slug)}}">{{ $product->name  }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                HÌNH ẢNH SẢN PHẨM
+                                ẢNH BÌA
                             </h2>
                         </div>
                         <div class="body">
@@ -117,48 +139,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header bg-indigo">
-                        <h2>
-                            Mô tả sản phẩm
-                        </h2>
-                    </div>
-                    <div class="body">
-                    {!! $product->about !!}
-                    </div>
-                </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header bg-blue">
-                        <h2>
-                            Danh Mục
-                        </h2>
-                    </div>
-                    
-                    <div class="body">
-                        @foreach ($product->categories as $category)
-                            <span class="label bg-cyan">{{ $category->name }}</span>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="header bg-green">
-                        <h2>
-                            Nhãn dán
-                        </h2>
-                    </div>
-                    <div class="body">
-                        @foreach ($product->tags as $tag)
-                            <span class="label bg-green">{{ $tag->name }}</span>
-                        @endforeach
-                    </div>
-                </div>
-                </div>
-            </div>   
+            </div>
     </div>
     
 @endsection

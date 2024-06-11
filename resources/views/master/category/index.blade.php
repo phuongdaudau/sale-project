@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Category')
+@section('title','Danh mục')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -10,9 +10,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('master.category.create') }}">
+            <a class="btn btn-primary waves-effect m-b-15" href="{{ route('master.category.create') }}">
                 <i class="material-icons">add</i>
-                <span>Add New Category</span>
+                <span>Thêm mới danh mục </span>
             </a>
         </div>
         <!-- Exportable Table -->
@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL CATEGORIES
+                            DANH SÁCH DANH MỤC
                             <span class="badge bg-blue">{{$categories->count()}}</span>
                         </h2>
                     </div>
@@ -32,7 +32,7 @@
                                 <tr>
                                 <th>STT</th>
                                     <th>Tên</th>
-                                    <th>Số Sản Phẩm</th>
+                                    <th>Số bài viết</th>
                                     <th>Ngày tạo</th>
                                     <th>Ngày Chỉnh Sửa</th>
                                     <th>Hành Động</th>
@@ -42,7 +42,7 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>Tên</th>
-                                    <th>Số Sản Phẩm</th>
+                                    <th>Số bài viết</th>
                                     <th>Ngày tạo</th>
                                     <th>Ngày Chỉnh Sửa</th>
                                     <th>Hành Động</th>

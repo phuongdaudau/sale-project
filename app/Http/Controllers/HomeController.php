@@ -46,5 +46,9 @@ class HomeController extends Controller
         return view('search', compact('categories', 'tags','products', 'query'));
     }
 
+    public function tinymce(Request $request) {
+        dd(123);
+    }
+
 }
 // sản phẩm nổi bật: 4 tag nhiều sp nhiều view nhất, lấy mỗi tag 2 sản phẩm nổi bật nhất(view cao nhất)

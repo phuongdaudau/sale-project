@@ -11,9 +11,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany('App\Models\Category')->withTimestamps();
+        return $this->belongsTo('App\Models\Category');
     }
     public function tags()
     {

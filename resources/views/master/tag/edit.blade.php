@@ -20,14 +20,17 @@
                     <form action = "{{ route('master.tag.update', $tag->id)}}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input type="text" id="name" class="form-control" name ="name" value="{{$tag->name}}">
-                                <label class="form-label">Tag Name</label>
-                            </div>
+                        <div class="form-line {{ $errors->has('hot_tag') ? 'focused error' : '' }}">
+                            <label for="hot_tag">Phân loại nhãn</label>
+                            <select name="hot_tag" id="hot_tag" class="form-control show-tick">
+                                @php
+                                    $tag = App\Helpers\Template::hotTag($tag->hot_tag);
+                                @endphp
+                                {!! $tag!!}
+                            </select>
                         </div>
-                        <a class="btn btn-danger m-t-15 waves-effect" href="{{ route('master.tag.index')}}">BACK</a>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
+                        <a class="btn btn-danger m-t-35 waves-effect" href="{{ route('master.tag.index')}}">BACK</a>
+                        <button type="submit" class="btn btn-primary m-t-35 waves-effect">SUBMIT</button>
                     </form>
                 </div>
             </div>
