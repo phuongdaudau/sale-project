@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class HomeController extends Controller
 {
@@ -46,8 +49,22 @@ class HomeController extends Controller
         return view('search', compact('categories', 'tags','products', 'query'));
     }
 
-    public function tinymce(Request $request) {
-        dd(123);
+    public function uploadImageCkeditor(Request $request) {
+        if($request->hasfile('upload')){
+            $image = $request->file('upload');
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $currentDate. '-' .$image->getClientOriginalName();
+            //check dir exist
+            if (!Storage::disk('public')->exists('upload')) {
+                Storage::disk('public')->makeDirectory('upload');
+            }
+            //save resize image
+            $productImage = Image::make($image)->save($imageName);
+            Storage::disk('public')->put('upload/' . $imageName, $productImage);
+            return response()->json([
+                'url' => Storage::disk('public')->url('upload/'. $imageName)
+            ]);
+        }
     }
 
 }

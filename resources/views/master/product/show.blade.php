@@ -108,7 +108,7 @@
                                 </h2>
                             </div>
                             <div class="body">
-                                <a href="{{ route('product.details', $product->slug)}}">{{ $product->name  }}</a>
+                                <a href="{{ route('product.details', $product->slug)}}" target="_blank">{{ $product->name  }}</a>
                             </div>
                         </div>
                     </div>

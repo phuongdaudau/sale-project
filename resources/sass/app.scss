@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+@import "config.scss";
+@import "header.scss";
+@import "index.scss";
+@import "list-news.scss";
+@import "login.scss";
+@import "new-detail.scss";
+@import "comment.scss";
+@import "dashboard.scss";
