@@ -206,14 +206,8 @@ class Template{
             case '1':
                 $role = 'Master';
                 break;
-            case '2':
-                $role = 'Nhân viên';
-                break;
-            case '3':
-                $role = 'Khách hàng';
-                break;
-            case '4':
-                $role = 'Shipper';
+            default:
+                $role = 'Người dùng';
                 break;
         }
         return $role;
@@ -245,7 +239,7 @@ class Template{
     }
 
     public static function checkRole($role){
-        $arr = ['1' => 'Master', '2' => 'Nhân viên', '3' => 'Khách hàng', '4' => 'Shipper '];
+        $arr = ['1' => 'Master', '2' => 'Người dùng'];
         $xhtml = '';
         foreach ($arr as $key => $value)
             if ($key == $role) {
@@ -260,5 +254,59 @@ class Template{
         $imgs = explode(",", $product_images);
         $images = array_slice($imgs,1,5);
         return $images[0];
+    }
+
+    public static function renderCategories($categories){
+        $parent = [];
+        $child = [];
+        $res = [];
+        foreach($categories as $item) {
+            if($item['parent_id'] == null) {
+                $parent[$item['id']] = $item['name'];
+            } else {
+                if(isset($child[$item['parent_id']])) {
+                    $child[$item['parent_id']][$item['id']] =  '|---' . $item['name'];
+                } else {
+                    $child[$item['parent_id']] = [$item['id'] => '|---' . $item['name']];
+                }
+            }
+        }
+        ksort($parent);
+
+        foreach($parent as $id => $item) {
+            $childs = [];
+            $res[$id] = $item;
+            if(isset($child[$id])) {
+                $childs = $child[$id];
+                ksort($childs);
+                foreach($childs as $idChild => $val) {
+                    $res[$idChild] = $val;
+                }
+            }
+        }
+        return $res;
+    }
+    public static function renderSideBar($categories){
+        $parent = [];
+        $child = [];
+        foreach($categories as $item) {
+            if($item['parent_id'] == null) {
+                $parent[$item['id']] = $item['name'];
+            } else {
+                if(isset($child[$item['parent_id']])) {
+                    $child[$item['parent_id']][$item['id']] =  $item['name'];
+                } else {
+                    $child[$item['parent_id']] = [$item['id'] => $item['name']];
+                }
+            }
+        }
+        ksort($parent);
+
+        $res = [
+            'parent' => $parent,
+            'child' => $child,
+        ];
+
+        return $res;
     }
 }

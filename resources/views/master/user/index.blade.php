@@ -106,18 +106,18 @@
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                   confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger m-r-5'
+                  cancelButton: 'btn btn-danger m-r-15'
                 },
                 buttonsStyling: false
               })
               
               swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Bạn có chắc muốn xóa?',
+                text: "Bạn sẽ không thể lấy lại dữ liệu nếu xóa!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không',
                 reverseButtons: true
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -128,8 +128,8 @@
                   result.dismiss === Swal.DismissReason.cancel
                 ) {
                   swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your data is safe :)',
+                    'Đã hủy',
+                    'Dữ liệu của bạn vẫn nguyên vẹn!',
                     'error'
                   )
                 }

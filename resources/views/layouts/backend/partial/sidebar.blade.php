@@ -33,12 +33,12 @@
         <ul class="list">
             <li class="header">CHỨC NĂNG CHÍNH </li>
             @if (Request::is('master*'))
-            <li class="{{ Request::is('master/dashboard') ? 'active' : ''}}">
-                <a href="{{ route('master.dashboard')}}">
-                    <i class="material-icons">dashboard</i>
-                    <span>Thống kê</span>
-                </a>
-            </li>
+{{--            <li class="{{ Request::is('master/dashboard') ? 'active' : ''}}">--}}
+{{--                <a href="{{ route('master.dashboard')}}">--}}
+{{--                    <i class="material-icons">dashboard</i>--}}
+{{--                    <span>Thống kê</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li class="{{ Request::is('master/user*') ? 'active' : '' }}">
                 <a href="{{ route('master.user.index')}}">    
                     <i class="material-icons">account_circle</i>
@@ -195,7 +195,7 @@
     <!-- Footer -->
     <div class="legal">
         <div class="copyright">
-           <a href="javascript:void(0);">Hanpico 2012 . All Rights Reserved.</a>.
+           <a href="javascript:void(0);">KFF 2024</a>.
         </div>
         <div class="version">
             <b>Version: </b> 1.0.5

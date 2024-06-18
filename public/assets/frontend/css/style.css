@@ -3587,7 +3587,7 @@ p.auth span.img-cat {
 	font-size: 15px;
 	padding: 8px 15px;
 	height: unset;
-	margin-bottom: 20px
+	/*margin-bottom: 20px*/
 }
 
 #loginModal .panel .btn-login {

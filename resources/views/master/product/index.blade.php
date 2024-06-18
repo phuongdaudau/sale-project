@@ -114,35 +114,35 @@
         function deleteproduct(id){
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger m-r-15'
                 },
                 buttonsStyling: false
-              })
-              
-              swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Bạn có chắc muốn xóa?',
+                text: "Bạn sẽ không thể lấy lại dữ liệu nếu xóa!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không',
                 reverseButtons: true
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  event.preventDefault();
-                  document.getElementById('delete-form-'+id).submit();
+                    event.preventDefault();
+                    document.getElementById('delete-form-'+id).submit();
                 } else if (
-                  /* Read more about handling dismissals below */
-                  result.dismiss === Swal.DismissReason.cancel
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
                 ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your data is safe :)',
-                    'error'
-                  )
+                    swalWithBootstrapButtons.fire(
+                        'Đã hủy',
+                        'Dữ liệu của bạn vẫn nguyên vẹn!',
+                        'error'
+                    )
                 }
-              })
+            })
         }
     </script>
 @endpush

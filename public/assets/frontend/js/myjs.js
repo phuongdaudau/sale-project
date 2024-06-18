@@ -507,37 +507,37 @@ $(".btn-social").click(function () {
 });
 
 // đăng nhập
-$(".btn-sign-in").click(function () {
-    var csrfToken = $('meta[name="csrf-token"]').attr("content");
-    var email = $(".email").val();
-    var password = $(".password").val();
-    // if (email == "" || password == "") {
-    //   alert("Vui lòng nhập đầy đủ thông tin");
-    // }
-    $.ajax({
-        url: "/login/submit",
-        type: "post",
-        data: {
-            email: email,
-            password: password,
-            _csrf_frontend: csrfToken,
-        },
-
-        error: function (xhr, status, error) {
-            console.log(error);
-            console.log(xhr.responseText);
-        },
-        success: function (res) {
-            console.log(res);
-            if (res == "oke") {
-                // alert("Đăng nhập thành công!");
-                location.reload();
-            } else {
-                alert("Đăng nhập thất bại, Vui lòng kiểm tra lại thông tin");
-            }
-        },
-    });
-});
+// $(".btn-sign-in").click(function () {
+//     var csrfToken = $('meta[name="csrf-token"]').attr("content");
+//     var email = $(".email").val();
+//     var password = $(".password").val();
+//     // if (email == "" || password == "") {
+//     //   alert("Vui lòng nhập đầy đủ thông tin");
+//     // }
+//     $.ajax({
+//         url: "/login/submit",
+//         type: "post",
+//         data: {
+//             email: email,
+//             password: password,
+//             _csrf_frontend: csrfToken,
+//         },
+//
+//         error: function (xhr, status, error) {
+//             console.log(error);
+//             console.log(xhr.responseText);
+//         },
+//         success: function (res) {
+//             console.log(res);
+//             if (res == "oke") {
+//                 // alert("Đăng nhập thành công!");
+//                 location.reload();
+//             } else {
+//                 alert("Đăng nhập thất bại, Vui lòng kiểm tra lại thông tin");
+//             }
+//         },
+//     });
+// });
 
 // dùng enter
 $("#pass").keypress(function (event) {
@@ -547,93 +547,93 @@ $("#pass").keypress(function (event) {
 });
 
 // đăng kí
-$(".btn-sign-up").click(function () {
-    var csrfToken = $('meta[name="csrf-token"]').attr("content");
-    var name = $(".signname").val();
-    var email = $(".signemail").val();
-    var phone = $(".signphone").val();
-    var password = $(".signpassword").val();
-    if (name == "") {
-        alert("Vui lòng nhập tên");
-    }
-    if (email == "") {
-        alert("Vui lòng nhập đầy đủ thông tin");
-    }
-    if (phone == "") {
-        alert("Vui lòng nhập đầy đủ thông tin");
-    }
-    if (password == "") {
-        alert("Vui lòng nhập đầy đủ thông tin");
-    }
-
-    $.ajax({
-        url: "/login/signup",
-        type: "post",
-        data: {
-            name: name,
-            email: email,
-            phone: phone,
-            password: password,
-            _csrf_frontend: csrfToken,
-        },
-
-        error: function (xhr, status, error) {
-            console.log(error);
-            console.log(xhr.responseText);
-        },
-        success: function (res, data) {
-            if (res == "oke") {
-                alert("Đăng kí thành công, kiểm tra email của bạn để xác thực!");
-                $("#login").show();
-                $("#register").hide();
-            } else {
-                alert("Đăng kí không thành công. Vui lòng kiểm tra lại thông tin!");
-                mes = JSON.parse(res);
-                $("#loginModal .pt-20 p").css("display", "block");
-                if (mes && mes.message.email) {
-                    $("#email_error_unique").text("* " + mes.message.email);
-                }
-                if (mes && mes.message.validate_email) {
-                    $("#email_error_validate").text("* " + mes.message.validate_email);
-                }
-                if (mes && mes.message.phone) {
-                    $("#phone_error_unique").text("* " + mes.message.phone);
-                }
-                if (mes && mes.message.validate_phone) {
-                    $("#phone_error_validate").text("* " + mes.message.validate_phone);
-                }
-            }
-        },
-    });
-});
-
-//quên mật khẩu
-$(".confirm").click(function () {
-    var csrfToken = $('meta[name="csrf-token"]').attr("content");
-    var email = $(".fogotemail").val();
-    $.ajax({
-        url: "/login/fogot",
-        type: "post",
-        data: {
-            email: email,
-            _csrf_frontend: csrfToken,
-        },
-
-        error: function (xhr, status, error) {
-            console.log(error);
-            console.log(xhr.responseText);
-        },
-        success: function (res) {
-            console.log(res);
-            if (res == "oke") {
-                alert("Đổi mật khẩu thành công. Vui lòng kiểm tra email của bạn.");
-                location.reload();
-            } else {
-                alert("Không tim thấy thông tin email, vui lòng kiểm tra lại.");
-            }
-        },
-    });
-});
+// $(".btn-sign-up").click(function () {
+//     var csrfToken = $('meta[name="csrf-token"]').attr("content");
+//     var name = $(".signname").val();
+//     var email = $(".signemail").val();
+//     var phone = $(".signphone").val();
+//     var password = $(".signpassword").val();
+//     if (name == "") {
+//         alert("Vui lòng nhập tên");
+//     }
+//     if (email == "") {
+//         alert("Vui lòng nhập đầy đủ thông tin");
+//     }
+//     if (phone == "") {
+//         alert("Vui lòng nhập đầy đủ thông tin");
+//     }
+//     if (password == "") {
+//         alert("Vui lòng nhập đầy đủ thông tin");
+//     }
+//
+//     $.ajax({
+//         url: "/login/signup",
+//         type: "post",
+//         data: {
+//             name: name,
+//             email: email,
+//             phone: phone,
+//             password: password,
+//             _csrf_frontend: csrfToken,
+//         },
+//
+//         error: function (xhr, status, error) {
+//             console.log(error);
+//             console.log(xhr.responseText);
+//         },
+//         success: function (res, data) {
+//             if (res == "oke") {
+//                 alert("Đăng kí thành công, kiểm tra email của bạn để xác thực!");
+//                 $("#login").show();
+//                 $("#register").hide();
+//             } else {
+//                 alert("Đăng kí không thành công. Vui lòng kiểm tra lại thông tin!");
+//                 mes = JSON.parse(res);
+//                 $("#loginModal .pt-20 p").css("display", "block");
+//                 if (mes && mes.message.email) {
+//                     $("#email_error_unique").text("* " + mes.message.email);
+//                 }
+//                 if (mes && mes.message.validate_email) {
+//                     $("#email_error_validate").text("* " + mes.message.validate_email);
+//                 }
+//                 if (mes && mes.message.phone) {
+//                     $("#phone_error_unique").text("* " + mes.message.phone);
+//                 }
+//                 if (mes && mes.message.validate_phone) {
+//                     $("#phone_error_validate").text("* " + mes.message.validate_phone);
+//                 }
+//             }
+//         },
+//     });
+// });
+//
+// //quên mật khẩu
+// $(".confirm").click(function () {
+//     var csrfToken = $('meta[name="csrf-token"]').attr("content");
+//     var email = $(".fogotemail").val();
+//     $.ajax({
+//         url: "/login/fogot",
+//         type: "post",
+//         data: {
+//             email: email,
+//             _csrf_frontend: csrfToken,
+//         },
+//
+//         error: function (xhr, status, error) {
+//             console.log(error);
+//             console.log(xhr.responseText);
+//         },
+//         success: function (res) {
+//             console.log(res);
+//             if (res == "oke") {
+//                 alert("Đổi mật khẩu thành công. Vui lòng kiểm tra email của bạn.");
+//                 location.reload();
+//             } else {
+//                 alert("Không tim thấy thông tin email, vui lòng kiểm tra lại.");
+//             }
+//         },
+//     });
+// });
 
 $("#success-alert")
     .fadeTo(2000, 500)
@@ -938,4 +938,14 @@ function countChar(maxLenght, curent_length, element, cElement) {
         element.children("span").html(curent_length + "/" + maxLenght);
     }
 }
+$(document).ready(function () {
+    $.get($('#box-gold').data('url'), function (data) {
+        console.log('#box-gold', data)
+        $('#box-gold').html(data);
+    }, 'html');
+
+    $.get($('#box-coin').data('url'), function (data) {
+        $('#box-coin').html(data);
+    }, 'html');
+});
 

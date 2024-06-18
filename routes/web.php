@@ -9,11 +9,13 @@ Route::get('contact', [App\Http\Controllers\HomeController::class, 'contact'])->
 Route::get('products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
 Route::get('bai-viet/{slug}', [App\Http\Controllers\ProductController::class, 'details'])->name('product.details');
 Route::post('upload/image', [App\Http\Controllers\HomeController::class, 'uploadImageCkeditor'])->name('upload.image');
+Route::post('get-gold', [App\Http\Controllers\HomeController::class, 'getGold'])->name('get.gold');
 
 Route::get('category/{slug}', [App\Http\Controllers\ProductController::class, 'productByCategory'])->name('category.product');
 Route::get('tag/{slug}', [App\Http\Controllers\ProductController::class, 'productByTag'])->name('tag.product');
 
 Route::get('search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+Route::get('master/login', [App\Http\Controllers\HomeController::class, 'masterLogin'])->name('master.login');
 
 Route::group(['as' => 'master.', 'prefix' => 'master',  'middleware' => 'master'], function () {
     Route::get('dashboard', [App\Http\Controllers\Master\DashboardController::class, 'index'])->name('dashboard');

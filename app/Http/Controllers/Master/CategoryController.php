@@ -124,7 +124,7 @@ class CategoryController extends Controller
             Storage::disk('public')->delete('category/banner/' . $category->image);
         }
         $category->delete();
-        Toastr::success('Category Successfully Deleted :)', 'Success');
+        Toastr::success('Đã xóa danh mục thành công!', 'Success');
         return redirect()->back();
     }
 }

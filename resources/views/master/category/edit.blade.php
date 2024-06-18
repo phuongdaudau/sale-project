@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Danh mục')
+@section('title', 'Chỉnh sửa danh mục')
 
 @push('css')
     
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        EDIT CATEGORY
+                        Chỉnh sửa danh mục
                     </h2>
                 </div>
                 <div class="body">
@@ -35,8 +35,8 @@
                                 </select>
                             </div>
                         </div>
-                        <a class="btn btn-danger m-t-35 waves-effect" href="{{ route('master.category.index')}}">BACK</a>
-                        <button type="submit" class="btn btn-primary m-t-35 waves-effect">SUBMIT</button>
+                        <a class="btn btn-danger m-t-35 waves-effect" href="{{ route('master.category.index')}}">TRỞ LẠI</a>
+                        <button type="submit" class="btn btn-primary m-t-35 waves-effect">LƯU</button>
                     </form>
                 </div>
             </div>

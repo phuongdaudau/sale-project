@@ -16,114 +16,21 @@
                 </form>
                 <!-- <a href="#">Bài viết theo chủ đề</a> -->
             </li>
-            <li>
-                <a href="/kinh-te-vi-mo" title="">Kinh tế vĩ mô</a>
-                <ul>
-                </ul>
-            </li>
-            <li>
-                <a href="/doanh-nghiep" title="">Doanh nghiệp</a>
-                <span class="material-icons showmenu" data-click="0">
-            expand_more
-            </span>
-                <ul>
-                    <li><a href="/tai-chinh" title="">Tài chính</a>
-                    </li>
-                    <li><a href="/doanh-nhan" title="">Doanh nhân</a>
-                    </li>
-                    <li><a href="/khoi-nghiep" title="">Khởi nghiệp</a>
-                    </li>
-                    <li><a href="/phap-luat" title="">Pháp luật</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="/ngan-hang" title="">Ngân hàng</a>
-                <ul>
-                </ul>
-            </li>
-            <li>
-                <a href="/chung-khoan" title="">Chứng khoán</a>
-                <span class="material-icons showmenu" data-click="0">
-            expand_more
-            </span>
-                <ul>
-                    <li><a href="/tin-thi-truong" title="">Tin thị trường</a>
-                    </li>
-                    <li><a href="/phan-tich-nhan-dinh" title="">Phân tích nhận định</a>
-                    </li>
-                    <li><a href="/tren-san-hom-nay" title="">Trên sàn hôm nay</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="/bat-dong-san" title="">Bất động sản</a>
-                <span class="material-icons showmenu" data-click="0">
-            expand_more
-            </span>
-                <ul>
-                    <li><a href="/chinh-sach" title="">Chính sách</a>
-                    </li>
-                    <li><a href="/thi-truong" title="">Thị trường</a>
-                    </li>
-                    <li><a href="/du-an" title="">Dự án</a>
-                    </li>
-                    <li><a href="/tu-van" title="">Tư vấn</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="/cong-nghe" title="">Công nghệ</a>
-                <span class="material-icons showmenu" data-click="0">
-            expand_more
-            </span>
-                <ul>
-                    <li><a href="/oto-xe-may" title="">Ôtô-Xe máy</a>
-                    </li>
-                    <li><a href="/di-dong-mang-vien-thong" title="">Di động-Mạng viễn thông</a>
-                    </li>
-                    <li><a href="/may-tinh-phan-mem" title="">Máy tính-Phần mềm</a>
-                    </li>
-                    <li><a href="/dien-gia-dung-thiet-bi-nghe-nhin" title="">Điện gia dụng-Thiết bị nghe nhìn</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="/tieu-dung" title="">Tiêu dùng</a>
-                <span class="material-icons showmenu" data-click="0">
-            expand_more
-            </span>
-                <ul>
-                    <li><a href="/hang-hoa" title="">Hàng Hóa</a>
-                    </li>
-                    <li><a href="/tieu-dung" title="">Tiêu dùng</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="/du-lieu" title="">Dữ liệu</a>
-                <span class="material-icons showmenu" data-click="0">
-            expand_more
-            </span>
-                <ul>
-                    <li><a href="/du-lieu-vi-mo" title="">Dữ liệu vĩ mô</a>
-                    </li>
-                    <li><a href="/chung-khoan" title="">Chứng khoán</a>
-                    </li>
-                    <li><a href="/vang" title="">Vàng</a>
-                    </li>
-                    <li><a href="/ti-gia" title="">Tỉ giá</a>
-                    </li>
-                    <li><a href="/nong-san" title="">Nông sản</a>
-                    </li>
-                    <li><a href="/kim-loai" title="">Kim loại</a>
-                    </li>
-                    <li><a href="/nang-luong" title="">Năng lượng</a>
-                    </li>
-                    <li><a href="/nguyen-lieu-cong-nghiep" title="">Nguyên liệu công nghiệp</a>
-                    </li>
-                </ul>
-            </li>
+            @foreach($categories['parent'] as $parentKey => $parent)
+                <li>
+                    <a href="{{ '/'. $categories['slug'][$parentKey] }}" title="">{{ $parent }}</a>
+                    @if(isset($categories['child'][$parentKey]))
+                        <span class="material-icons showmenu" data-click="0">
+                        expand_more
+                        </span>
+                        <ul>
+                            @foreach($categories['child'][$parentKey] as $childKey => $child)
+                                <li><a href="{{ '/'. $categories['slug'][$childKey] }}" title="">{{ $child }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </li>
+            @endforeach
             <li style="display:none"><a href="/video" title="">Video</a></li>
         </ul>
         <div class="bottom-sidebar">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Helpers\Template;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
@@ -27,36 +28,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::get()->toArray();
-        $parent = [];
-        $child = [];
-        $res = [];
-        foreach($categories as $item) {
-            if($item['parent_id'] == null) {
-                $parent[$item['id']] = $item['name'];
-            } else {
-                if(isset($child[$item['parent_id']])) {
-                    $child[$item['parent_id']][$item['id']] =  '|---' . $item['name'];
-                } else {
-                    $child[$item['parent_id']] = [$item['id'] => '|---' . $item['name']];
-                }
-            }
-        }
-        ksort($parent);
-
-        foreach($parent as $id => $item) {
-            $childs = [];
-            $res[$id] = $item;
-            if(isset($child[$id])) {
-                $childs = $child[$id];
-                ksort($childs);
-                foreach($childs as $idChild => $val) {
-                    $res[$idChild] = $val;
-                }
-            }
-        }
-        $categories = $res;
-
+        $categories = Template::renderCategories(Category::get()->toArray());
         $tags = Tag::all();
         $warehouses = Warehouse::select('*')->where('type', '=', '1')->get();
         return view('master.product.create', compact('categories', 'tags', 'warehouses'));
@@ -135,36 +107,7 @@ class ProductController extends Controller
     {
         $tagName = $product->tags->pluck('name')->toArray();
         $tags = implode(', ', $tagName);
-        $categories = Category::get()->toArray();
-        $parent = [];
-        $child = [];
-        $res = [];
-        foreach($categories as $item) {
-            if($item['parent_id'] == null) {
-                $parent[$item['id']] = $item['name'];
-            } else {
-                if(isset($child[$item['parent_id']])) {
-                    $child[$item['parent_id']][$item['id']] =  '|---' . $item['name'];
-                } else {
-                    $child[$item['parent_id']] = [$item['id'] => '|---' . $item['name']];
-                }
-            }
-        }
-        ksort($parent);
-
-        foreach($parent as $id => $item) {
-            $childs = [];
-            $res[$id] = $item;
-            if(isset($child[$id])) {
-                $childs = $child[$id];
-                ksort($childs);
-                foreach($childs as $idChild => $val) {
-                    $res[$idChild] = $val;
-                }
-            }
-        }
-        $categories = $res;
-
+        $categories = Template::renderCategories(Category::get()->toArray());
         return view('master.product.edit', compact('product', 'categories', 'tags'));
     }
 
@@ -244,7 +187,6 @@ class ProductController extends Controller
         if (Storage::disk('public')->exists('product/' . $product->image)) {
             Storage::disk('public')->delete('product/' . $product->image);
         }
-        $product->categories()->detach();
         $product->tags()->detach();
         $product->delete();
         Toastr::success('Xóa bài viết thành công!', 'Success');
@@ -257,9 +199,9 @@ class ProductController extends Controller
         if ($product->is_approved == false) {
             $product->is_approved = true;
             $product->save();
-            Toastr::success('Xác nhận bài viết thành công :)', 'Success');
+            Toastr::success('Xác nhận bài viết thành công!', 'Success');
         } else {
-            Toastr::info('bài viết đã được xác nhận :)', 'Info');
+            Toastr::info('Bài viết đã được xác nhận!', 'Info');
         }
         return redirect()->back();
     }

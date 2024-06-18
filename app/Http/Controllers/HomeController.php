@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Feed;
+use App\Helpers\Template;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -30,14 +32,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->get();
-        $tags = Tag::latest()->get();
+        $categories = Template::renderSideBar(Category::get()->toArray());
+        $categories['slug'] = Category::pluck('slug', 'id')->toArray();
+        $tags = Tag::latest()->pluck('name', 'id')->toArray();
         $latest_products = Product::latest()->take(6)->get()->toArray();
         return view('welcome', compact('categories', 'latest_products', 'tags'));
     }
 
+    public function getGold()
+    {
+        $itemsGold = Feed::getGold();
+//        dd($itemsGold);
+        return view('layouts.frontend.partial.box-gold', [
+            'itemsGold' => $itemsGold
+        ]);
+    }
+
     public function contact(){
         return view('contact');
+    }
+    public function masterLogin(){
+        return view('auth.login');
     }
 
     public function search(Request $request)

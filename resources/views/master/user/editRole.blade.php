@@ -1,7 +1,7 @@
 
 @extends('layouts.backend.app')
 
-@section('title','Cập nhật đơn hàng')
+@section('title','Cập nhật người dùng')
 
 @push('css')
 

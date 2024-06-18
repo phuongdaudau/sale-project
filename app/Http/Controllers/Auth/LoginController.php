@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -29,6 +30,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+
     /**
      * Create a new controller instance.
      *
@@ -36,15 +38,22 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        if (Auth::check() && Auth::user()->role->id == 1) {
-            $this->redirectTo = route('master.dashboard');
-        } elseif(Auth::check() && Auth::user()->role->id == 2) {
-            $this->redirectTo = route('staff.dashboard');
-        } elseif(Auth::check() && Auth::user()->role->id == 3) {
-            $this->redirectTo = route('customer.account');
-        } elseif(Auth::check() && Auth::user()->role->id == 4) {
-            $this->redirectTo = route('shipper.dashboard');
-        }
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if (Auth::check() && Auth::user()->role->id == 1) {// do your magic here
+            return redirect()->route('master.product.index');
+        }
+
+        return redirect('/');
+    }
+
+    protected function loggedOut(Request $request) {
+        if (Auth::check() && Auth::user()->role->id == 1) {// do your magic here
+            return redirect()->route('master.login');
+        }
+        return redirect('/');
     }
 }

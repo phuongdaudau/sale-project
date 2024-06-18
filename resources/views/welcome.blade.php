@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title','Home')
+@section('title','Trang chủ')
 
 @section('content')
 
@@ -9,6 +9,9 @@
             <div class=" col-lg-9">
                 <div class="left">
                     <div class="s-left">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+                            Launch demo modal
+                        </button>
                         <!-- <div class="btn-dang write-post" data-login="1">
                            Nhập nội dung...
                            <a href="#">Đăng bài</a>
@@ -542,476 +545,38 @@
                     </div>
                 </div>
             </div>
-            <div class="right col-lg-3">
-                <div class="write-right">
-                    <h3 class="title">
-                        <img src="{{ asset('assets/frontend/img/ic-pencil.svg') }}" alt="Viết bài" title="Viết bài">Viết bài
-                    </h3>
-                    <div class="box write-post" data-login="1">
-                        Nhập nội dung...
-                        <a href="#">Đăng bài</a>
-                    </div>
-                </div>
-                <div class="ads__box adweb m-0" style="margin-bottom:40px !important">
-                    <div class="banner" banner-adpos="pc-home-right1"></div>
-                </div>
-                <div class="tieu-diem">
-                    <h2><img src="{{ asset('assets/frontend/img/ic-tieu-diem.png') }}" alt="Tiêu điểm" title="Tiêu điểm">Tiêu điểm</h2>
-                    <ul>
-                        <li class="new-style">
-                            <!-- <span>1</span> -->
-                            <!-- <a href="/doanh-nhan" class="cat">Doanh nhân</a> -->
-                            <p><a href="/doanh-nhan" class="cat-new">Doanh nhân</a></p>
-                            <h3 class="title-news">
-                                <a href="/ong-chu-vinfast-pham-nhat-vuong-toi-khong-lo-ve-doanh-so-xe-dien%E2%80%9D-p22648.html" class="title text-3">
-                                    Ông chủ VinFast Phạm Nhật Vượng: "Tôi không lo về doanh số xe điện”                </a>
-                            </h3>
-                        </li>
-                        <li class="new-style">
-                            <!-- <span>2</span> -->
-                            <!-- <a href="/doanh-nghiep" class="cat">Doanh nghiệp</a> -->
-                            <p><a href="/doanh-nghiep" class="cat-new">Doanh nghiệp</a></p>
-                            <h3 class="title-news">
-                                <a href="/tt-group-cua-bau-hien-ban-bat-thanh-745-trieu-co-phieu-shb-p22665.html" class="title text-3">
-                                    T&amp;T Group của "bầu" Hiển bán bất thành 74,5 triệu cổ phiếu SHB                </a>
-                            </h3>
-                        </li>
-                        <li class="new-style">
-                            <!-- <span>3</span> -->
-                            <!-- <a href="/chung-khoan" class="cat">Chứng khoán</a> -->
-                            <p><a href="/chung-khoan" class="cat-new">Chứng khoán</a></p>
-                            <h3 class="title-news">
-                                <a href="/mot-co-phieu-ngan-hang-con-du-dia-upside-hon-25-p22653.html" class="title text-3">
-                                    Một cổ phiếu ngân hàng còn dư địa "upside" hơn 25%                </a>
-                            </h3>
-                        </li>
-                        <li class="new-style">
-                            <!-- <span>4</span> -->
-                            <!-- <a href="/ngan-hang" class="cat">Ngân hàng</a> -->
-                            <p><a href="/ngan-hang" class="cat-new">Ngân hàng</a></p>
-                            <h3 class="title-news">
-                                <a href="/nam-a-bank-sap-tang-von-vuot-13700-ty-dong-p22664.html" class="title text-3">
-                                    Nam A Bank sắp tăng vốn vượt 13.700 tỷ đồng                </a>
-                            </h3>
-                        </li>
-                        <li class="new-style">
-                            <!-- <span>5</span> -->
-                            <!-- <a href="/kinh-te-vi-mo" class="cat">Kinh tế vĩ mô</a> -->
-                            <p><a href="/kinh-te-vi-mo" class="cat-new">Kinh tế vĩ mô</a></p>
-                            <h3 class="title-news">
-                                <a href="/fed-phat-tin-hieu-cat-giam-lai-suat-1-lan-nam-nay-p22650.html" class="title text-3">
-                                    Fed phát tín hiệu cắt giảm lãi suất 1 lần năm nay                </a>
-                            </h3>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ads__box adweb m-0" style="margin-bottom:40px !important; margin-top:30px !important">
-                    <div class="banner" banner-adpos="pc-home-right2"><a href=""><img src="https://dff.vn//uploads/ads/300x250_1.jpg?v=1713942983" width="300" height="250"></a></div>
-                </div>
-                <div class="top-acount">
-                    <h4 class="title-right">Top thành viên</h4>
-                    <ul>
-                        <li>
-                            <img src="/uploads/avatar/2024/06/05/1ff77a9251abfaf5a3ba-1717599881.jpg">
-                            <a href="
-                     /user/user-u335">
-                                DFF VN            </a>
-                            <p>@user335</p>
-                            <button>Theo dõi</button>
-                        </li>
-                        <li>
-                            <img src="/uploads/avatar/2024/06/04/anh-Nguyen-Phu-Tung-dang-nghien-cuu-tai-vung-nguyen-lieu-1717510531.jpg">
-                            <a href="
-                     /user/user-u334">
-                                Đỗ Gia            </a>
-                            <p>@user334</p>
-                            <button>Theo dõi</button>
-                        </li>
-                        <li>
-                            <img src="/uploads/avatar/2024/06/03/ava-1717387687.jpg">
-                            <a href="
-                     /user/user-u332">
-                                Kim Giao            </a>
-                            <p>@user332</p>
-                            <button>Theo dõi</button>
-                        </li>
-                        <li>
-                            <img src="/uploads/avatar/2024/06/04/MTXX_MH20240210_145430745-1717458655.jpg">
-                            <a href="
-                     /user/user-u331">
-                                Phương Liên            </a>
-                            <p>@user331</p>
-                            <button>Theo dõi</button>
-                        </li>
-                        <li>
-                            <img src="/uploads/avatar/2024/05/30/hoang-tung-1717035583.jpg">
-                            <a href="
-                     /user/user-u329">
-                                Hoàng Tùng            </a>
-                            <p>@user329</p>
-                            <button>Theo dõi</button>
-                        </li>
-                        <li>
-                            <img src="/uploads/avatar/2024/05/28/a-1716901976.jpg">
-                            <a href="
-                     /user/user-u323">
-                                Hồ Thị Mỹ Duyên            </a>
-                            <p>@user323</p>
-                            <button>Theo dõi</button>
-                        </li>
-                    </ul>
-                </div>
-                <table id="tigia" class="table table-bordered table-right">
-                    <tbody>
-                    <tr class="head">
-                        <td colspan="4">
-                            Thông tin chứng khoán
-                            <p>Cập nhật 2024-06-14 00:20</p>
-                        </td>
-                    </tr>
-                    <!-- <tr class="name">
-                       <td>Name</td>
-                       <td>Giá trị</td>
-                       <td>Thay đổi</td>
-                       </tr> -->
-                    <tr>
-                        <td>VN-INDEX</td>
-                        <td class="txt-green">1,301.51</td>
-                        <td class="txt-green">1.32</td>
-                        <td class="txt-green">0.10%</td>
-                    </tr>
-                    <tr>
-                        <td>HNX-INDEX</td>
-                        <td class="txt-green">248.36</td>
-                        <td class="txt-green">0.05</td>
-                        <td class="txt-green">0.02%</td>
-                    </tr>
-                    <tr>
-                        <td>UPCOM-INDEX</td>
-                        <td class="txt-red">99.02</td>
-                        <td class="txt-red">0.12</td>
-                        <td class="txt-red">-0.12%</td>
-                    </tr>
-                    <tr>
-                        <td>VN30-INDEX</td>
-                        <td class="txt-green">1,333.85</td>
-                        <td class="txt-green">2.04</td>
-                        <td class="txt-green">0.15%</td>
-                    </tr>
-                    <tr>
-                        <td>HNX30-INDEX</td>
-                        <td class="txt-green">555.98</td>
-                        <td class="txt-green">1.32</td>
-                        <td class="txt-green">0.24%</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <table id="tigia" class="table table-bordered table-right">
-                    <tbody>
-                    <tr class="head">
-                        <td colspan="3">
-                            Tỉ giá ngoại tệ
-                            <p>Cập nhật 2024-06-12</p>
-                        </td>
-                    </tr>
-                    <tr class="name">
-                        <td>Name</td>
-                        <td>Giá trị</td>
-                        <td>Thay đổi</td>
-                    </tr>
-                    <tr>
-                        <td>USD/VND</td>
-                        <td class="up">25443</td>
-                        <td class="up">0%</td>
-                    </tr>
-                    <tr>
-                        <td>EUR/VND</td>
-                        <td class="up">27503</td>
-                        <td class="up">0.6441%</td>
-                    </tr>
-                    <tr>
-                        <td>CNY/VND</td>
-                        <td class="up">3514.3486</td>
-                        <td class="up">0.205%</td>
-                    </tr>
-                    <tr>
-                        <td>JPY/VND</td>
-                        <td class="up">163.2951</td>
-                        <td class="up">0.009166%</td>
-                    </tr>
-                    <tr>
-                        <td>EUR/USD</td>
-                        <td class="up">1.0809</td>
-                        <td class="up">0.6331%</td>
-                    </tr>
-                    <tr>
-                        <td>USD/JPY</td>
-                        <td class="down">156.72</td>
-                        <td class="down">-0.2609%</td>
-                    </tr>
-                    <tr>
-                        <td>USD/CNY</td>
-                        <td class="down">7.2405</td>
-                        <td class="down">-0.193%</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <table id="tigia" class="table table-bordered table-right">
-                    <tbody>
-                    <tr class="head">
-                        <td colspan="3">
-                            Giá vàng hôm nay
-                            <p>Cập nhật 2022-05-28 04:58</p>
-                        </td>
-                    </tr>
-                    <tr class="name">
-                        <td>Loại</td>
-                        <td>Giá mua</td>
-                        <td>Giá bán</td>
-                    </tr>
-                    <tr>
-                        <td>DOJI HN</td>
-                        <td class="">68,500</td>
-                        <td class="">69,500</td>
-                    </tr>
-                    <tr>
-                        <td>DOJI SG</td>
-                        <td class="">68,500</td>
-                        <td class="">69,450</td>
-                    </tr>
-                    <tr>
-                        <td>Phú Qúy SJC</td>
-                        <td class="">68,650</td>
-                        <td class="">69,400</td>
-                    </tr>
-                    <tr>
-                        <td>SJC TP HCM</td>
-                        <td class="">68,500</td>
-                        <td class="">69,500</td>
-                    </tr>
-                    <tr>
-                        <td>SJC Đà Nẵng</td>
-                        <td class="">68,500</td>
-                        <td class="">69,520</td>
-                    </tr>
-                    <tr>
-                        <td>PNJ TP.HCM</td>
-                        <td class="">54,100</td>
-                        <td class="">55,200</td>
-                    </tr>
-                    <tr>
-                        <td>PNJ HN</td>
-                        <td class="">54,100</td>
-                        <td class="">55,200</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="ads__box adweb m-0" style="margin-bottom:30px !important">
-                    <div class="banner" banner-adpos="pc-home-right3"></div>
-                </div>
-                <h4 class="tilte-right">Tag nổi bật</h4>
-                <div class="tags-right">
-                    <a href="/tag/dai-hoi-co-dong-dsc-4276" class="tag">
-                        # Đại hội cổ đông DSC            </a>
-                    <a href="/tag/vndirect-bi-hack-4273" class="tag">
-                        # VNDirect bị hack            </a>
-                    <a href="/tag/vps-4223" class="tag">
-                        #VPS            </a>
-                    <a href="/tag/lpbs-4186" class="tag">
-                        # LPBS            </a>
-                    <a href="/tag/lumi-hanoi-4178" class="tag">
-                        #Lumi Hanoi            </a>
-                    <a href="/tag/techcombank-chia-co-tuc-4073" class="tag">
-                        # Techcombank chia cổ tức            </a>
-                    <a href="/tag/warren-buffett-4053" class="tag">
-                        #Warren Buffett            </a>
-                    <a href="/tag/tc-group-3924" class="tag">
-                        # TC Group            </a>
-                    <a href="/tag/lpbank-3743" class="tag">
-                        #LPBank            </a>
-                    <a href="/tag/pham-nhat-vuong-3134" class="tag">
-                        #Phạm Nhật Vượng            </a>
-                    <a href="/tag/pti-2907" class="tag">
-                        # PTI            </a>
-                    <a href="/tag/pnj-1959" class="tag">
-                        #PNJ            </a>
-                    <a href="/tag/shark-thuy-1916" class="tag">
-                        #Shark Thuỷ            </a>
-                    <a href="/tag/him-lam-1715" class="tag">
-                        # him lam            </a>
-                    <a href="/tag/vre-1568" class="tag">
-                        #VRE            </a>
-                    <a href="/tag/vci-1563" class="tag">
-                        # VCI            </a>
-                    <a href="/tag/vndirect-1521" class="tag">
-                        #VNDirect            </a>
-                    <a href="/tag/mwg-1429" class="tag">
-                        #MWG            </a>
-                    <a href="/tag/sungroup-1036" class="tag">
-                        #Sungroup            </a>
-                    <a href="/tag/vinfast-968" class="tag">
-                        #VinFast            </a>
-                </div>
-                <div class="footer">
-                    <a href="/" class="logo"><img src="/images/icons/logo-xam.png?v=2" alt="logo xam" width="150px" height="auto"></a>
-                    <div class="text1">
-                        <p>Chịu trách nhiệm nội dung: <strong>Trần Đô Thành</strong></p>
-                        <p>Địa chỉ: <strong>Tầng 8, tòa nhà Detech II, 107 Nguyễn Phong Sắc, P.Nghĩa Đô, Q.Cầu Giấy, TP Hà Nội.</strong></p>
-                        <p>Điện thoại: <strong>091.468.4321</strong></p>
-                        <p>Email: <strong>admin@dff.vn</strong></p>
-                    </div>
-                    <div class="text2">
-                        <p>Giấy phép MXH 125/GP-BTTTT cấp 11/03/2022.</p>
-                        <p><a href="/policy"> Điều khoản dịch vụ</a> | <a href="/policy"> Chính sách riêng tư</a> | <a href="/policy">Quảng
-                                Cáo</a>
-                        </p>
-                        <p>©<b>2022 Tài Chính Số.</b></p>
-                        <p>Thiết kế và vận hành bởi <a href="https://giaminhmedia.vn"><b>giaminhmedia</b></a></p>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.frontend.partial.side')
         </div>
         <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@graph": [{
-            "@type": "WebSite",
-            "url": "https://dff.vn/",
-            "name": "Mạng xã hội tài chính, chứng khoán, bất động sản và kinh tế Việt Nam",
-            "description": "Mạng xã hội tài chính số dff.vn, digital finance forum, đầu tư tài chính, kinh tế Việt Nam và thế giới, thị trường chứng khoán, bất động sản, giá cả hàng hóa, doanh nghiep, vnindex, hnx index, hose, hnx30, vn30, phái sinh, cổ phiếu, upcom, dow jones, S&P 500, nikkei, Nasdaq, giá vàng đô la, usd",
-            "keywords": "Mạng xã hội tài chính số dff, diễn đàn kinh tế doanh nghiệp, kinh tế Việt Nam, vĩ mô, vi mô, doanh nhân, bất động sản, tài chính ngân hàng, đầu tư cổ phiếu, công ty chứng khoán, chứng quyền, trái phiếu, shanghai, DJ future, crude oil wti, gold, năng lượng, xã hội, pháp luật, công nghệ, tiền số, tiền ảo, bitcoin"
-          },
-          {
-            "@type": "Organization",
-            "logo": "https://dff.vn/images/dff.png",
-            "url": "https://dff.vn/",
-            "name": "DFF - Tài Chính Số",
-            "foundingDate": "2022-05-16T16:38:28-16:00",
-            "sameAs": []
-          }
-        ]
-      }
-   </script>
-        <script>
-            var ads_post = "home";
-        </script>
+              {
+                "@context": "http://schema.org",
+                "@graph": [{
+                    "@type": "WebSite",
+                    "url": "https://dff.vn/",
+                    "name": "Mạng xã hội tài chính, chứng khoán, bất động sản và kinh tế Việt Nam",
+                    "description": "Mạng xã hội tài chính số dff.vn, digital finance forum, đầu tư tài chính, kinh tế Việt Nam và thế giới, thị trường chứng khoán, bất động sản, giá cả hàng hóa, doanh nghiep, vnindex, hnx index, hose, hnx30, vn30, phái sinh, cổ phiếu, upcom, dow jones, S&P 500, nikkei, Nasdaq, giá vàng đô la, usd",
+                    "keywords": "Mạng xã hội tài chính số dff, diễn đàn kinh tế doanh nghiệp, kinh tế Việt Nam, vĩ mô, vi mô, doanh nhân, bất động sản, tài chính ngân hàng, đầu tư cổ phiếu, công ty chứng khoán, chứng quyền, trái phiếu, shanghai, DJ future, crude oil wti, gold, năng lượng, xã hội, pháp luật, công nghệ, tiền số, tiền ảo, bitcoin"
+                  },
+                  {
+                    "@type": "Organization",
+                    "logo": "https://dff.vn/images/dff.png",
+                    "url": "https://dff.vn/",
+                    "name": "DFF - Tài Chính Số",
+                    "foundingDate": "2022-05-16T16:38:28-16:00",
+                    "sameAs": []
+                  }
+                ]
+              }
+           </script>
+            <script>
+                var ads_post = "home";
+            </script>
         <!-- Modal -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="class=" modal-dialog"="" role"="">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="apopup-close" data-dismiss="modal" aria-label="Close"></button>
-                    <!-- đăng nhập -->
-                    <section id="login" class="panel">
-                        <div class="panel__header">
-                            <div class="panel__title"> Đăng nhập tài khoản </div>
-                            <div class="panel__header-description"> Chào mừng bạn trở lại! Xin mời đăng nhập </div>
-                        </div>
-                        <div class="panel__body">
-                            <form class="login-form pt-20">
-                                <div class="form-group">
-                                    <input class="form-control email" type="email" name="email" placeholder="Email hoặc số điện thoại...">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control password" type="password" id="pass" name="password" placeholder="Mật khẩu...">
-                                </div>
-                                <div class="login-options">
-                                    <p class="forgot-password note-redirect" href="#forgot"> Quên mật khẩu </p>
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn-login btn-sign-in">
-                                        <text id="btn-log">Đăng nhập</text>
-                                    </button>
-                                </div>
-                            </form>
-                            <div class="content-divider text-muted"> <span>Hoặc</span> </div>
-                            <div class="form-social">
-                                <button type="button" id="text-login" class="btn-social" data-platform="facebook">
-                                    <img src="/images/fblog.png" alt="facebook login">
-                                    Đăng nhập bằng Facebook
-                                </button>
-                                <button type="button" class="btn-social" data-platform="google">
-                                    <img src="/images/gglog.png" alt="google login">
-                                    Đăng nhập bằng Google
-                                </button>
-                            </div>
-                        </div>
-                        <div class="panel__footer">
-                            <div class="note"> Bạn chưa có tài khoản DFF.<span class="note-redirect" href="#register"> Đăng ký </span> </div>
-                        </div>
-                    </section>
-                    <!-- dăng kí -->
-                    <section id="register" class="panel" style="display: none;">
-                        <div class="panel__header">
-                            <div class="panel__title"> Đăng ký tài khoản</div>
-                            <div class="panel__header-description">Tạo tài khoản để sử dụng đầy đủ tính năng và tham gia cộng đồng thành viên của DFF.VN</div>
-                        </div>
-                        <div class="panel__body">
-                            <form class="login-form pt-20">
-                                <div class="form-group">
-                                    <input class="form-control signname" type="text" name="name" placeholder="Họ và tên...">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control signemail" type="email" name="email" placeholder="Email...">
-                                    <p id="email_error_unique"></p>
-                                    <p id="email_error_validate"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control signphone" type="text" name="phone" placeholder="Số điện thoại...">
-                                    <p id="phone_error_unique"></p>
-                                    <p id="phone_error_validate"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control signpassword" id="pass2" type="password" name="password" placeholder="Mật khẩu...">
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn-login btn-sign-up">
-                                        <text id="btn-log">Đăng ký</text>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <br>
-                        <div class="panel__footer">
-                            <div class="note"> Khi bấm tạo tài khoản bạn đã đồng ý <br>với <a href="/policy">quy định</a> của DFF.VN</div>
-                            <div class="note"> Bạn đã có tài khoản? <span class="note-redirect" href="#login">Đăng nhập</span> </div>
-                        </div>
-                    </section>
-                    <!-- Quên mật khẩu -->
-                    <section id="forgot" class="panel" style="display: none;">
-                        <div class="panel__header">
-                            <div class="panel__title"> Quên mật khẩu </div>
-                            <div class="panel__header-description">Nhập địa chỉ email đã đăng ký để lấy lại mật khẩu!</div>
-                        </div>
-                        <div class="panel__body">
-                            <form class="login-form pt-20">
-                                <div class="form-group">
-                                    <input class="form-control fogotemail" type="text" name="email" placeholder="Email...">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <button type="button" class="btn-login confirm">
-                                        <text>Xác nhận</text>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <br>
-                        <div class="panel__footer">
-                            <div class="note"> Quay lại trang đăng nhập <span class="note-redirect" href="#login">tại
-                        đây</span>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-    <span id="back-top">
-      <svg>
-         <use xlink:href="#North"></use>
-      </svg>
-   </span>
+        <span id="back-top">
+          <svg>
+             <use xlink:href="#North"></use>
+          </svg>
+       </span>
     </div>
 
 @endsection
