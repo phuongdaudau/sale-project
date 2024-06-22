@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -52,6 +53,9 @@ class HomeController extends Controller
         return view('contact');
     }
     public function masterLogin(){
+        if(Auth::check() && Auth::user()->role->id == 1) {
+            return redirect()->route('master.product.index');
+        }
         return view('auth.login');
     }
 
@@ -69,15 +73,16 @@ class HomeController extends Controller
             $image = $request->file('upload');
             $currentDate = Carbon::now()->toDateString();
             $imageName = $currentDate. '-' .$image->getClientOriginalName();
-            //check dir exist
-            if (!Storage::disk('public')->exists('upload')) {
-                Storage::disk('public')->makeDirectory('upload');
-            }
-            //save resize image
-            $productImage = Image::make($image)->save($imageName);
-            Storage::disk('public')->put('upload/' . $imageName, $productImage);
+
+            $data = [
+                'file'          => $image,
+                'folder'        => '/uploads/product-content',
+                'filename'      => $imageName,
+            ];
+
+            $imageName = Template::uploadFile($data);
             return response()->json([
-                'url' => Storage::disk('public')->url('upload/'. $imageName)
+                'url' => url('/') . $imageName
             ]);
         }
     }

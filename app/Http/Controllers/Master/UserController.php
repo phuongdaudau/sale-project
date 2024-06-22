@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Helpers\Template;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -54,15 +55,16 @@ class UserController extends Controller
         if (isset($image)) {
             $currentDate = Carbon::now()->toDateString();
             $imageName = $user->username . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            if (!Storage::disk('public')->exists('profile')) {
-                Storage::disk('public')->makeDirectory('profile');
-            }
-            
-            if (Storage::disk('public')->exists('profile/' . $user->image)) {
-                Storage::disk('public')->delete('profile/' . $user->image);
-            }
-            $profile = Image::make($image)->resize(150, 150)->save($imageName . '.' . $image->getClientOriginalExtension());
-            Storage::disk('public')->put('profile/' . $imageName, $profile);
+
+            $data = [
+                'file'          => $image,
+                'folder'        => '/uploads/profile',
+                'filename'      => $imageName,
+                'old'           => $user->image,
+            ];
+
+            $imageName = Template::uploadFile($data);
+
         } else {
             $imageName = $user->image;
         }

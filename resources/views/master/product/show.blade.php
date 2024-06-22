@@ -124,17 +124,11 @@
                         </div>
                         <div class="body">
                             <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
-                                @php
-                                    $imgs = explode(",", $product->image);
-                                    $images = array_slice($imgs,1,5);
-                                @endphp
-                                @foreach($images as $image)
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                        <a href="{{ Storage::disk('public')->url('product/'. $image) }}" data-sub-html="Demo Description">
-                                            <img class="img-responsive thumbnail" src="{{ Storage::disk('public')->url('product/'. $image) }}">
-                                        </a>
-                                    </div>
-                                @endforeach
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <a href="{{ url($product->image) }}" data-sub-html="Demo Description">
+                                        <img class="img-responsive thumbnail" src="{{ url($product->image) }}">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

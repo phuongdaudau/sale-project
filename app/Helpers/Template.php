@@ -255,6 +255,36 @@ class Template{
         $images = array_slice($imgs,1,5);
         return $images[0];
     }
+    public static function uploadFile($data){
+        $file                       = $data['file'] ?? null;
+        $tempfile                   = '';
+        if ($file) {
+            $fileName               = $file->getClientOriginalName();
+            $path                   = public_path() . '/uploads';
+            if (isset($data['folder'])) {
+                $path               = public_path() . $data['folder'];
+            }
+            if (isset($data['filename'])) {
+                $fileName           = $data['filename'];
+            }
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $tempfile               = $path . '/' . $fileName;
+            if (file_exists($tempfile)) {
+                unlink($tempfile);
+            }
+            if(isset($data['old'])) {
+                $oldFile = public_path() . $data['old'];
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+
+            $file->move($path, $fileName);
+        }
+        return str_replace(public_path(), '', $tempfile);
+    }
 
     public static function renderCategories($categories){
         $parent = [];

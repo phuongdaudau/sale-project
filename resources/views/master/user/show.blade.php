@@ -12,7 +12,7 @@
                         <div class="profile-header">&nbsp;</div>
                         <div class="profile-body">
                             <div class="image-area">
-                                <img src="{{ Storage::disk('public')->url('profile/'. $user->image) }}" width="150" height="150" alt="AdminBSB - Profile Image">
+                                <img src="{{ url($user->image) }}" width="150" height="150" alt="AdminBSB - Profile Image">
                             </div>
                             <div class="content-area">
                                 <h3>{{$user->username}}</h3>

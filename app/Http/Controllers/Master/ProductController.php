@@ -41,7 +41,7 @@ class ProductController extends Controller
             'description'       => 'required',
             'about'             => 'required',
             'category_id'       => 'required',
-            'image'             => 'required',
+            'image'             => 'required|max:5120',
             'tags'              => 'required',
         ]);
 
@@ -69,16 +69,14 @@ class ProductController extends Controller
             $imagename = '';
             foreach($request->file('image') as $key=>$image){
                 $currentDate = Carbon::now()->toDateString();
-                $imageName = $slug.'-'. $currentDate .'-'. $key . '.' . $image->getClientOriginalExtension(); 
-                //check dir exist
-                if (!Storage::disk('public')->exists('product')) {
-                    Storage::disk('public')->makeDirectory('product');
-                }
-                //save resize image
-                $productImage = Image::make($image)->save($imageName . '.' . $image->getClientOriginalExtension());
-                Storage::disk('public')->put('product/' . $imageName, $productImage);
+                $imageName = $slug.'-'. $currentDate .'-'. $key . '.' . $image->getClientOriginalExtension();
+                $data = [
+                    'file'          => $image,
+                    'folder'        => '/uploads/product-thumb',
+                    'filename'      => $imageName,
+                ];
 
-                $imagename = $imagename. ',' . $imageName;
+                $imagename = Template::uploadFile($data);
             }
             $product->image = $imagename;
         }
@@ -150,20 +148,16 @@ class ProductController extends Controller
             $imagename = '';
             foreach($request->file('image') as $key=>$image){
                 $currentDate = Carbon::now()->toDateString();
-                $imageName = $slug.'-'. $currentDate .'-'. $key . '.' . $image->getClientOriginalExtension(); 
-                //check dir exist
-                if (!Storage::disk('public')->exists('product')) {
-                    Storage::disk('public')->makeDirectory('product');
-                }
-                //delete old image
-                if (Storage::disk('public')->exists('product/' . $product->image)) {
-                    Storage::disk('public')->delete('product/' . $product->image);
-                }
-                    //save resize image
-                $productImage = Image::make($image)->save($imageName . '.' . $image->getClientOriginalExtension());
-                Storage::disk('public')->put('product/' . $imageName, $productImage);
+                $imageName = $slug.'-'. $currentDate .'-'. $key . '.' . $image->getClientOriginalExtension();
 
-                $imagename = $imagename. ',' . $imageName;
+                $data = [
+                    'file'          => $image,
+                    'folder'        => '/uploads/product-thumb',
+                    'filename'      => $imageName,
+                    'old'           => $product->image,
+                ];
+
+                $imagename = Template::uploadFile($data);
             }
             $product->image = $imagename;
         }
