@@ -7,14 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Tag;
-use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 
 class ProductController extends Controller
@@ -30,8 +28,7 @@ class ProductController extends Controller
     {
         $categories = Template::renderCategories(Category::get()->toArray());
         $tags = Tag::all();
-        $warehouses = Warehouse::select('*')->where('type', '=', '1')->get();
-        return view('master.product.create', compact('categories', 'tags', 'warehouses'));
+        return view('master.product.create', compact('categories', 'tags'));
     }
 
     public function store(Request $request)
