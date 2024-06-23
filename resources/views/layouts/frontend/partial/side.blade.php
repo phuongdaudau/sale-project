@@ -68,7 +68,7 @@
         <h4 class="title-right">Top thành viên</h4>
         <ul>
             <li>
-                <img src="/uploads/avatar/2024/06/05/1ff77a9251abfaf5a3ba-1717599881.jpg">
+                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
                 <a href="
                      /user/user-u335">
                     DFF VN            </a>
@@ -76,7 +76,7 @@
                 <button>Theo dõi</button>
             </li>
             <li>
-                <img src="/uploads/avatar/2024/06/04/anh-Nguyen-Phu-Tung-dang-nghien-cuu-tai-vung-nguyen-lieu-1717510531.jpg">
+                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
                 <a href="
                      /user/user-u334">
                     Đỗ Gia            </a>
@@ -84,7 +84,7 @@
                 <button>Theo dõi</button>
             </li>
             <li>
-                <img src="/uploads/avatar/2024/06/03/ava-1717387687.jpg">
+                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
                 <a href="
                      /user/user-u332">
                     Kim Giao            </a>
@@ -92,7 +92,7 @@
                 <button>Theo dõi</button>
             </li>
             <li>
-                <img src="/uploads/avatar/2024/06/04/MTXX_MH20240210_145430745-1717458655.jpg">
+                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
                 <a href="
                      /user/user-u331">
                     Phương Liên            </a>
@@ -100,7 +100,7 @@
                 <button>Theo dõi</button>
             </li>
             <li>
-                <img src="/uploads/avatar/2024/05/30/hoang-tung-1717035583.jpg">
+                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
                 <a href="
                      /user/user-u329">
                     Hoàng Tùng            </a>
@@ -108,7 +108,7 @@
                 <button>Theo dõi</button>
             </li>
             <li>
-                <img src="/uploads/avatar/2024/05/28/a-1716901976.jpg">
+                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
                 <a href="
                      /user/user-u323">
                     Hồ Thị Mỹ Duyên            </a>
@@ -276,20 +276,19 @@
         @endforeach
     </div>
     <div class="footer">
-        <a href="/" class="logo"><img src="/images/icons/logo-xam.png?v=2" alt="logo xam" width="150px" height="auto"></a>
+        <a href="/" class="logo"><img src="{{ asset('assets/frontend/img/kff-grey.png') }}" alt="logo xam" width="150px" height="auto"></a>
         <div class="text1">
-            <p>Chịu trách nhiệm nội dung: <strong>Trần Đô Thành</strong></p>
-            <p>Địa chỉ: <strong>Tầng 8, tòa nhà Detech II, 107 Nguyễn Phong Sắc, P.Nghĩa Đô, Q.Cầu Giấy, TP Hà Nội.</strong></p>
-            <p>Điện thoại: <strong>091.468.4321</strong></p>
-            <p>Email: <strong>admin@dff.vn</strong></p>
+            <p>Chịu trách nhiệm nội dung: <strong>Admin KFF</strong></p>
+            <p>Địa chỉ: <strong>Phường Tiền Phong, Thành phố Thái Bình, Tỉnh Thái Bình, Việt Nam</strong></p>
+            <p>Điện thoại: <strong>0912.950.220</strong></p>
+            <p>Email: <strong>admin@kff.vn</strong></p>
         </div>
         <div class="text2">
             <p>Giấy phép MXH 125/GP-BTTTT cấp 11/03/2022.</p>
             <p><a href="/policy"> Điều khoản dịch vụ</a> | <a href="/policy"> Chính sách riêng tư</a> | <a href="/policy">Quảng
                     Cáo</a>
             </p>
-            <p>©<b>2022 Tài Chính Số.</b></p>
-            <p>Thiết kế và vận hành bởi <a href="https://giaminhmedia.vn"><b>giaminhmedia</b></a></p>
+            <p>©<b>2024 Tài Chính Số.</b></p>
         </div>
     </div>
 </div>

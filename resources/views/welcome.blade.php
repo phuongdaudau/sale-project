@@ -9,9 +9,9 @@
             <div class=" col-lg-9">
                 <div class="left">
                     <div class="s-left">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
-                            Launch demo modal
-                        </button>
+{{--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">--}}
+{{--                            Launch demo modal--}}
+{{--                        </button>--}}
                         <!-- <div class="btn-dang write-post" data-login="1">
                            Nhập nội dung...
                            <a href="#">Đăng bài</a>
@@ -24,7 +24,7 @@
                             <a href="/ong-chu-vinfast-pham-nhat-vuong-toi-khong-lo-ve-doanh-so-xe-dien%E2%80%9D-p22648.html" class="title">
                                 Ông chủ VinFast Phạm Nhật Vượng: "Tôi không lo về doanh số xe điện”              </a>
                         </h3>
-                        <p class="auth"><img src="uploads/avatar/2024/06/03/ava-1717387687.jpg" alt="uploads/avatar/2024/06/03/ava-1717387687.jpg" title="Kim Giao">
+                        <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/06/03/ava-1717387687.jpg" title="Kim Giao">
                             <a href="/user/kim-giao-u332">
                                 Kim Giao              </a>
                         </p>
@@ -40,7 +40,7 @@
                                     <a href="/theo-dau-ca-map-phien-126-khoi-ngoai-xa-rong-1400-ty-dong-p22667.html" class="title">
                                         Theo dấu "cá mập" phiên 12/6: Khối ngoại "xả ròng" 1.400 tỷ đồng                  </a>
                                 </h3>
-                                <p class="auth"><img src="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg" title="Cường Vũ Huy" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
+                                <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" title="Cường Vũ Huy" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
                                     <a href="/user/cuong-vu-huy-u257">
                                         Cường Vũ Huy                  </a>
                                 </p>
@@ -56,7 +56,7 @@
                                     <a href="/goc-nhin-chung-khoan-ngan-hang-noi-song-vn-index-tru-vung-tren-1300-diem-p22666.html" class="title">
                                         Góc nhìn chứng khoán: Ngân hàng nổi sóng, VN-Index trụ vững trên 1.300 điểm                  </a>
                                 </h3>
-                                <p class="auth"><img src="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg" title="Cường Vũ Huy" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
+                                <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" title="Cường Vũ Huy" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
                                     <a href="/user/cuong-vu-huy-u257">
                                         Cường Vũ Huy                  </a>
                                 </p>
@@ -75,7 +75,7 @@
                                 <a href="/nhom-lpbs-ban-55-trieu-co-phieu-hag-p22663.html" class="title">
                                     Nhóm LPBS bán 5,5 triệu cổ phiếu HAG                  </a>
                             </h3>
-                            <p class="auth"><img src="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg" title="Lê Giang " alt="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg">
+                            <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" title="Lê Giang " alt="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg">
                                 <a href="/user/le-giang-u278">
                                     Lê Giang                   </a>
                             </p>
@@ -88,7 +88,7 @@
                                 <a href="/nam-a-bank-sap-tang-von-vuot-13700-ty-dong-p22664.html" class="title">
                                     Nam A Bank sắp tăng vốn vượt 13.700 tỷ đồng                  </a>
                             </h3>
-                            <p class="auth"><img src="uploads/avatar/2024/03/15/Theo-James-The-Gentlemen-1710504287.webp" title="Nguyễn Tiến" alt="uploads/avatar/2024/03/15/Theo-James-The-Gentlemen-1710504287.webp">
+                            <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" title="Nguyễn Tiến" alt="uploads/avatar/2024/03/15/Theo-James-The-Gentlemen-1710504287.webp">
                                 <a href="/user/nguyen-tien-u256">
                                     Nguyễn Tiến                  </a>
                             </p>
@@ -101,7 +101,7 @@
                                 <a href="/co-dong-nhieu-doanh-nghiep-sap-nhan-con-mua-co-tuc-tien-mat-p22658.html" class="title">
                                     Cổ đông nhiều doanh nghiệp sắp nhận "cơn mưa" cổ tức tiền mặt                  </a>
                             </h3>
-                            <p class="auth"><img src="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg" title="Lê Giang " alt="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg">
+                            <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" title="Lê Giang " alt="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg">
                                 <a href="/user/le-giang-u278">
                                     Lê Giang                   </a>
                             </p>
@@ -192,7 +192,7 @@
                                 <a href="/cap-nhat-vi-mo-ngay-13-06-2024-p22652.html" class="title text-3">
                                     Cập nhật Vĩ mô ngày 13-06-2024                  </a>
                             </h3>
-                            <p class="auth"><img src="uploads/avatar/2022/05/06/default-avatar-1651810836.png" alt="uploads/avatar/2022/05/06/default-avatar-1651810836.png">
+                            <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2022/05/06/default-avatar-1651810836.png">
                                 <a href="/user/ni-le-chi-u338">
                                     Ni Le Chi                  </a>
                             </p>
@@ -208,7 +208,7 @@
                                 <a href="/gia-vang-hom-nay-136-tut-ap-sau-cuoc-hop-cua-fed-p22649.html" class="title text-3">
                                     Giá vàng hôm nay 13/6: Tụt áp sau cuộc họp của Fed                  </a>
                             </h3>
-                            <p class="auth"><img src="uploads/avatar/2024/06/03/ava-1717387687.jpg" alt="uploads/avatar/2024/06/03/ava-1717387687.jpg">
+                            <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/06/03/ava-1717387687.jpg">
                                 <a href="/user/kim-giao-u332">
                                     Kim Giao                  </a>
                             </p>
@@ -224,7 +224,7 @@
                                 <a href="/kbc-kinh-bac-de-xuat-dau-tu-hai-kcn-voi-tong-quy-mo-17000-ty-dong-tai-can-tho-p22646.html" class="title text-3">
                                     KBC: Kinh Bắc đề xuất đầu tư hai KCN với tổng quy mô 17.000 tỷ đồng tại Cần Thơ                  </a>
                             </h3>
-                            <p class="auth"><img src="uploads/avatar/2024/05/30/119d7684e4f962f589a7ef99f5ea847a-1717061294.jpg" alt="uploads/avatar/2024/05/30/119d7684e4f962f589a7ef99f5ea847a-1717061294.jpg">
+                            <p class="auth"><img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/05/30/119d7684e4f962f589a7ef99f5ea847a-1717061294.jpg">
                                 <a href="/user/thanh-tung-u306">
                                     Thanh Tùng                  </a>
                             </p>
@@ -249,12 +249,12 @@
                                 Chứng khoán Mỹ chứng kiến nhịp tăng mạnh trong phiên 12/6 sau khi dữ liệu cho thấy lạm phát đang chậm lại trong tháng 5.
                             </p>
                             <p class="auth">
-                                <img class="img-auth" src="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg" alt="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg">
+                                <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/05/30/leonardo-dicaprio-ra-toa-vi-bo-phim-the-wolf-of-wall-street_1-1717058622.jpg">
                                 <span class="img-auth">
                      <a href="/user/le-giang-u278">
                      Lê Giang                     </a>
                      </span>
-                                <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png">
+                                <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png">
                                 <a href="chung-khoan">
                                     <span class="img-cat">Chứng khoán</span>
                                 </a>
@@ -276,12 +276,12 @@
                                 CTCP Chứng khoán VIX (Mã CK: VIX) mới đây đã thông qua 4 phương án phát hành cổ phiếu để tăng vốn điều lệ lên mức 14.592,9, dự kiến sẽ được triển khai trong 2 quý cuối năm nay.
                             </p>
                             <p class="auth">
-                                <img class="img-auth" src="uploads/avatar/2024/03/15/Theo-James-The-Gentlemen-1710504287.webp" alt="uploads/avatar/2024/03/15/Theo-James-The-Gentlemen-1710504287.webp">
+                                <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/03/15/Theo-James-The-Gentlemen-1710504287.webp">
                                 <span class="img-auth">
                      <a href="/user/nguyen-tien-u256">
                      Nguyễn Tiến                    </a>
                      </span>
-                                <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png">
+                                <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png">
                                 <a href="doanh-nghiep">
                                     <span class="img-cat">Doanh nghiệp</span>
                                 </a>
@@ -303,12 +303,12 @@
                                 Chỉ số giá tiêu dùng (CPI) của Mỹ trong tháng 5 thấp hơn dự báo, giảm bớt áp lực cho Fed trong cuộc chiến lạm phát.
                             </p>
                             <p class="auth">
-                                <img class="img-auth" src="uploads/avatar/2024/04/01/38f9cde113502f28c513e4f93223e86f-1711948361.jpg" alt="uploads/avatar/2024/04/01/38f9cde113502f28c513e4f93223e86f-1711948361.jpg">
+                                <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/04/01/38f9cde113502f28c513e4f93223e86f-1711948361.jpg">
                                 <span class="img-auth">
                      <a href="/user/quynh-anh-u248">
                      Quỳnh Anh                     </a>
                      </span>
-                                <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png">
+                                <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png">
                                 <a href="kinh-te-vi-mo">
                                     <span class="img-cat">Kinh tế vĩ mô</span>
                                 </a>
@@ -330,12 +330,12 @@
                             </h3>
                         </a>
                         <p class="auth">
-                            <img class="img-auth" src="uploads/avatar/2024/03/16/hoang-giang-1710586390.jpg" alt="uploads/avatar/2024/03/16/hoang-giang-1710586390.jpg">
+                            <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/03/16/hoang-giang-1710586390.jpg">
                             <span class="img-auth">
                   <a href="/user/hoang-giang-u272">
                   Hoàng Giang              </a>
                   </span>
-                            <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="doanh-nghiep"><span class="img-cat">Doanh nghiệp</span></a>
+                            <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="doanh-nghiep"><span class="img-cat">Doanh nghiệp</span></a>
                         </p>
                         <p class="desc">
                             Daso Hải Phòng là đơn vị phát triển dự án Đảo Hoa Phượng ở Đồ Sơn, Hải Phòng. Nằm cách không xa dự án này là Khu du lịch Quốc tế Đồi Rồng – "siêu dự án" 480 ha gắn liền với tên tuổi đại gia Vũ Văn Tiền.
@@ -413,7 +413,7 @@
                                         Theo dấu "cá mập" phiên 12/6: VN-Index vượt 1.300 điểm, khối ngoại và tự doanh đồng loạt "xả" hàng                </a>
                                 </h3>
                                 <p class="auth">
-                                    <img src="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
+                                    <img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
                                     <a href="/user/cuong-vu-huy-u257">
                                         Cường Vũ Huy                </a>
                                 </p>
@@ -429,7 +429,7 @@
                                         Quỹ iShares ETF đang đầu tư vào Việt Nam vừa thông báo giải thể lớn cỡ nào?                </a>
                                 </h3>
                                 <p class="auth">
-                                    <img src="uploads/avatar/2024/05/30/IMG_5509-1717038749.jpeg" alt="uploads/avatar/2024/05/30/IMG_5509-1717038749.jpeg">
+                                    <img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/05/30/IMG_5509-1717038749.jpeg">
                                     <a href="/user/quang-liem-u307">
                                         Quang Liêm                </a>
                                 </p>
@@ -455,12 +455,12 @@
                                 Mua vàng trả nợ, người phụ nữ này đã tìm đến nhiều nơi, xếp hàng 4 ngày liên tiếp nhưng vẫn không mua được vàng.
                             </p>
                             <p class="auth">
-                                <img class="img-auth" src="uploads/avatar/2024/06/08/ava-1717863425.jpg" alt="uploads/avatar/2024/06/08/ava-1717863425.jpg">
+                                <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/06/08/ava-1717863425.jpg">
                                 <span class="img-auth">
                      <a href="/user/dat-vo-u322">
                      Đạt Võ                    </a>
                      </span>
-                                <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="vang"><span class="img-cat">Vàng</span></a>
+                                <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="vang"><span class="img-cat">Vàng</span></a>
                             </p>
                             <!-- </div> -->
                         </div>
@@ -479,12 +479,12 @@
                                 Thị trường bất ngờ bùng nổ trong phiên giao dịch hôm nay với sự đồng thuận của nhiều nhóm ngành. Kết phiên, VN-Index tăng 15,78 điểm, đóng cửa tại mốc 1.300,19 điểm.
                             </p>
                             <p class="auth">
-                                <img class="img-auth" src="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
+                                <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
                                 <span class="img-auth">
                      <a href="/user/cuong-vu-huy-u257">
                      Cường Vũ Huy                    </a>
                      </span>
-                                <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="chung-khoan"><span class="img-cat">Chứng khoán</span></a>
+                                <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="chung-khoan"><span class="img-cat">Chứng khoán</span></a>
                             </p>
                             <!-- </div> -->
                         </div>
@@ -503,12 +503,12 @@
                                 Dòng tiền nhập cuộc mạnh mẽ trong phiên chiều 12/6 giúp VN-Index bật tăng hơn 15 điểm, chốt phiên trên mốc 1.300 điểm.
                             </p>
                             <p class="auth">
-                                <img class="img-auth" src="uploads/avatar/2024/01/16/avata-1705417784.jpg" alt="uploads/avatar/2024/01/16/avata-1705417784.jpg">
+                                <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/01/16/avata-1705417784.jpg">
                                 <span class="img-auth">
                      <a href="/user/mai-huong-u247">
                      Mai Hương                    </a>
                      </span>
-                                <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="chung-khoan"><span class="img-cat">Chứng khoán</span></a>
+                                <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="chung-khoan"><span class="img-cat">Chứng khoán</span></a>
                             </p>
                             <!-- </div> -->
                         </div>
@@ -527,12 +527,12 @@
                                 Cổ phiếu VPB của Ngân hàng TMCP Việt Nam Thinh Vượng (VPBank) ghi nhận diễn biến khớp lệnh đột biến trong phiên giao dịch hôm nay (12/6).
                             </p>
                             <p class="auth">
-                                <img class="img-auth" src="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
+                                <img class="img-auth" src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="uploads/avatar/2024/02/29/b47dedff42f29aacc3e3-1709187551.jpg">
                                 <span class="img-auth">
                      <a href="/user/cuong-vu-huy-u257">
                      Cường Vũ Huy                    </a>
                      </span>
-                                <img class="img-cat" src="uploads/avatar/2022/04/27/image 42-1651048585.png" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="chung-khoan"><span class="img-cat">Chứng khoán</span></a>
+                                <img class="img-cat" src="{{ asset('assets/frontend/img/icon-cat.png') }}" alt="uploads/avatar/2022/04/27/image 42-1651048585.png"><a href="chung-khoan"><span class="img-cat">Chứng khoán</span></a>
                             </p>
                             <!-- </div> -->
                         </div>
@@ -573,9 +573,7 @@
             </script>
         <!-- Modal -->
         <span id="back-top">
-          <svg>
-             <use xlink:href="#North"></use>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" color="blue"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
        </span>
     </div>
 

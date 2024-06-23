@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         $categories = Template::renderSideBar(Category::get()->toArray());
         $categories['slug'] = Category::pluck('slug', 'id')->toArray();
-        $tags = Tag::latest()->pluck('name', 'id')->toArray();
+        $tags = Tag::latest()->take(20)->pluck('name', 'id')->toArray();
         $latest_products = Product::latest()->take(6)->get()->toArray();
         return view('welcome', compact('categories', 'latest_products', 'tags'));
     }

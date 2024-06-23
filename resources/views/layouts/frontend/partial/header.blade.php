@@ -34,7 +34,7 @@
             <li style="display:none"><a href="/video" title="">Video</a></li>
         </ul>
         <div class="bottom-sidebar">
-            <div class="text">DFF<span>SOCIAL MEDIA</span></div>
+            <div class="text">KFF<span>SOCIAL MEDIA</span></div>
             <div class="isocial">
                 <a href="#">
                     <svg>
@@ -70,12 +70,9 @@
         </div>
     </div>
     <div class="logo">
-        <a href="/" title="Logo"><img src="/images/logo-none.png" alt=""></a>
-    </div>
-    <!-- <div class="logo">
-       <a href="/" title="Logo"><img src="/images/logo-none.svg" alt="" width="95px" height="40px" /></a>
+       <a href="/" title="Logo"><img src="{{ asset('assets/frontend/img/kff-main.png') }}" alt="" width="100px" height="50px" /></a>
        <span>Diễn đàn kinh tế - tài chính</span>
-       </div> -->
+       </div>
     <ul class="right-menu">
         <!-- <li>SUBSCRIBE</li> -->
         <li class="search">
@@ -96,27 +93,30 @@
             </div>
         </li>
         <li class="login-mb">
-            <div class="dropdown-info">
-                <button class="box-login" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="box-icon-wrapper">
-                        <img src="/uploads/avatar/2022/05/06/default-avatar-1651810836.png" alt="avatar">
-                    </div>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <ul class="user_dropdown">
-                        <li><strong>Xin chào, Phuong Do</strong></li>
-                        <li>
-                            <a href="/gui-bai">Viết bài</a>
-                        </li>
-                        <li>
-                            <a href="/user/profile">Thông tin tài khoản</a>
-                        </li>
-                        <li>
-                            <a href="/site/logout" data-method="post">Đăng xuất</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="acount box-login" data-toggle="modal" data-target="#loginModal">
+                <span class="material-icons"> person </span>
             </div>
+{{--            <div class="dropdown-info">--}}
+{{--                <button class="box-login" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                    <div class="box-icon-wrapper">--}}
+{{--                        <img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="avatar">--}}
+{{--                    </div>--}}
+{{--                </button>--}}
+{{--                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">--}}
+{{--                    <ul class="user_dropdown">--}}
+{{--                        <li><strong>Xin chào, Phuong Do</strong></li>--}}
+{{--                        <li>--}}
+{{--                            <a href="/gui-bai">Viết bài</a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="/user/profile">Thông tin tài khoản</a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="/site/logout" data-method="post">Đăng xuất</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </li>
     </ul>
     <!-- </div> -->
