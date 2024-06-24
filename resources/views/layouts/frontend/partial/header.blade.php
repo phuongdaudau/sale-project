@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="logo">
-       <a href="/" title="Logo"><img src="{{ asset('assets/frontend/img/kff-main.png') }}" alt="" width="100px" height="50px" /></a>
+       <a href="/" title="Logo"><img src="{{ asset('assets/frontend/img/kff-vn.png') }}" alt="" width="100px" height="50px" /></a>
        </div>
     <ul class="right-menu">
         <!-- <li>SUBSCRIBE</li> -->

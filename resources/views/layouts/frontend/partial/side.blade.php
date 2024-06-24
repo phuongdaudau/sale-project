@@ -279,16 +279,16 @@
         <a href="/" class="logo"><img src="{{ asset('assets/frontend/img/kff-grey.png') }}" alt="logo xam" width="150px" height="auto"></a>
         <div class="text1">
             <p>Chịu trách nhiệm nội dung: <strong>Admin KFF</strong></p>
-            <p>Địa chỉ: <strong>Phường Tiền Phong, Thành phố Thái Bình, Tỉnh Thái Bình, Việt Nam</strong></p>
-            <p>Điện thoại: <strong>0912.950.220</strong></p>
+            <p>Địa chỉ: <strong></strong></p>
+            <p>Điện thoại: <strong></strong></p>
             <p>Email: <strong>admin@kff.vn</strong></p>
         </div>
         <div class="text2">
-            <p>Giấy phép MXH 125/GP-BTTTT cấp 11/03/2022.</p>
+            <p>Website chạy thử nghiệm</p>
             <p><a href="/policy"> Điều khoản dịch vụ</a> | <a href="/policy"> Chính sách riêng tư</a> | <a href="/policy">Quảng
                     Cáo</a>
             </p>
-            <p>©<b>2024 Tài Chính Số.</b></p>
+            <p>©<b>2024</b></p>
         </div>
     </div>
 </div>
