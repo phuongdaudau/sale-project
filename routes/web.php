@@ -74,7 +74,7 @@ Route::group(['as' => 'customer.', 'middleware' => 'customer'], function () {
     Route::get('deleteItemCart/{id}', [App\Http\Controllers\CartController::class, 'deleteItemCart'])->name('cart.delete');
     Route::get('listCart', [App\Http\Controllers\CartController::class, 'listCart'])->name('cart.list');
     Route::get('deleteListCart/{id}', [App\Http\Controllers\CartController::class, 'deleteListCart'])->name('list-cart.delete');
-    Route::get('saveQtyItemCart/{id}/{quantity}', [App\Http\Controllers\CartController::class, 'saveQtyItemCart'])->name('list-cart.delete');
+//    Route::get('saveQtyItemCart/{id}/{quantity}', [App\Http\Controllers\CartController::class, 'saveQtyItemCart'])->name('list-cart.delete');
     Route::get('product/addCartFromDetail/{id}/{quantity}', [App\Http\Controllers\CartController::class, 'addCartFromDetail'])->name('addCartFromDetail');
 });
 

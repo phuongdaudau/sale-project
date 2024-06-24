@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="panel__footer">
-                    <div class="note"> Bạn chưa có tài khoản WEB.<span class="note-redirect" href="#register"> Đăng ký </span> </div>
+                    <div class="note"> Bạn chưa có tài khoản KFF<span class="note-redirect" href="#register"> Đăng ký </span> </div>
                 </div>
             </section>
             <!-- dăng kí -->
@@ -116,7 +116,7 @@
                 </div>
                 <br>
                 <div class="panel__footer">
-                    <div class="note"> Khi bấm tạo tài khoản bạn đã đồng ý <br>với <a href="/policy">quy định</a> của WEB.VN</div>
+                    <div class="note"> Khi bấm tạo tài khoản bạn đã đồng ý <br>với <a href="/policy">quy định</a> của KFF.VN</div>
                     <div class="note"> Bạn đã có tài khoản? <span class="note-redirect" href="#login">Đăng nhập</span> </div>
                 </div>
             </section>

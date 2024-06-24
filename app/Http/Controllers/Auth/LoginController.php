@@ -45,9 +45,9 @@ class LoginController extends Controller
     {
         if (Auth::check() && Auth::user()->role->id == 1) {// do your magic here
             return redirect()->route('master.product.index');
+        } else {
+            return redirect('/');
         }
-
-        return redirect('/');
     }
 
     protected function loggedOut(Request $request) {
