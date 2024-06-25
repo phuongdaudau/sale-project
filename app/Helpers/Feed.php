@@ -30,26 +30,12 @@ class Feed
         return ($source == $sourceFromLink);
     }
 
-    public static function readVNExpress($link) // name
+    public static function readVNExpress() // name
     {
         try {
-            $data = simplexml_load_file($link, "SimpleXMLElement", LIBXML_NOCDATA);
+            $data = simplexml_load_file('https://vnexpress.net/chu-de/gia-vang-1403', "SimpleXMLElement", LIBXML_NOCDATA);
             $data = json_encode($data);
             $data = json_decode($data, TRUE);
-            $data = $data['channel']['item'];
-
-            foreach ($data as $key => $value) {
-                unset($data[$key]['guid']);
-                $tmp1 = [];
-                $tmp2 = [];
-
-                preg_match('/src="([^"]*)"/i', $value['description'], $tmp1);
-                $pattern = '.*br>(.*)';
-                preg_match('/' . $pattern . '/', $value['description'], $tmp2);
-
-                $data[$key]['description'] = $tmp2[1] ?? $value['description'];
-                $data[$key]['thumb'] = $tmp1[1] ?? '';
-            }
             return $data;
         } catch (\Throwable $th) {
             return [];
@@ -83,18 +69,52 @@ class Feed
 
     public static function getGold()
     {
+        $ch = curl_init();
+
+        $url = 'http://api.btmc.vn/api/BTMCAPI/getpricebtmc?key=3kd8ub1llcg9t45hnoh8hmn7t5kc2v';
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+
+        $response = curl_exec($ch);
+
+// Check for errors
+        if ($response === false) {
+            echo 'cURL Error: ' . curl_error($ch);
+        } else {
+            $data = json_decode($response)->DataList->Data;
+
+            dd($data);
+
+            // Check if the response is valid XML
+            if ($xml === false) {
+                echo 'Failed to parse XML';
+            } else {
+                // Print the XML data
+                echo '<pre>';
+                dd($xml);
+                echo '</pre>';
+            }
+        }
+
+        curl_close($ch);
+
+        return $data;
+    }
+
+    public static function tyGia()
+    {
         $context = stream_context_create(['ssl' => [
             'verify_peer' => false,
             "verify_peer_name" => false
         ]]);
 
         libxml_set_streams_context($context);
-        $link = 'https://www.sjc.com.vn/xml/tygiavang.xml';
+        $link = 'https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=10';
         $data = simplexml_load_file($link);
         $data = json_encode($data);
         $data = json_decode($data, TRUE);
-        $data = $data['ratelist']['city'][0]['item'];
-        $data = array_column($data, '@attributes');
         return $data;
     }
 

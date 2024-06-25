@@ -67,54 +67,16 @@
     <div class="top-acount">
         <h4 class="title-right">Top thành viên</h4>
         <ul>
-            <li>
-                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
-                <a href="
-                     /user/user-u335">
-                    DFF VN            </a>
-                <p>@user335</p>
-                <button>Theo dõi</button>
-            </li>
-            <li>
-                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
-                <a href="
-                     /user/user-u334">
-                    Đỗ Gia            </a>
-                <p>@user334</p>
-                <button>Theo dõi</button>
-            </li>
-            <li>
-                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
-                <a href="
-                     /user/user-u332">
-                    Kim Giao            </a>
-                <p>@user332</p>
-                <button>Theo dõi</button>
-            </li>
-            <li>
-                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
-                <a href="
-                     /user/user-u331">
-                    Phương Liên            </a>
-                <p>@user331</p>
-                <button>Theo dõi</button>
-            </li>
-            <li>
-                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
-                <a href="
-                     /user/user-u329">
-                    Hoàng Tùng            </a>
-                <p>@user329</p>
-                <button>Theo dõi</button>
-            </li>
-            <li>
-                <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
-                <a href="
-                     /user/user-u323">
-                    Hồ Thị Mỹ Duyên            </a>
-                <p>@user323</p>
-                <button>Theo dõi</button>
-            </li>
+            @foreach($users as $user)
+                <li>
+                    <img src="{{ asset('assets/frontend/img/default-ava.png') }}">
+                    <a href="
+                     /user/{{ $user['id'] }}">
+                        {{ $user['name'] }}            </a>
+                    <p>@user{{$user['id']}}</p>
+                    <button>Theo dõi</button>
+                </li>
+            @endforeach
         </ul>
     </div>
     <h3>Giá vàng</h3>
@@ -171,49 +133,21 @@
         <tr class="head">
             <td colspan="3">
                 Tỉ giá ngoại tệ
-                <p>Cập nhật 2024-06-12</p>
+                <p>Cập nhật {{ $money['DateTime'] }}</p>
             </td>
         </tr>
         <tr class="name">
-            <td>Name</td>
-            <td>Giá trị</td>
-            <td>Thay đổi</td>
+            <td>Tên</td>
+            <td>Mua vào</td>
+            <td>Bán ra</td>
         </tr>
-        <tr>
-            <td>USD/VND</td>
-            <td class="up">25443</td>
-            <td class="up">0%</td>
-        </tr>
-        <tr>
-            <td>EUR/VND</td>
-            <td class="up">27503</td>
-            <td class="up">0.6441%</td>
-        </tr>
-        <tr>
-            <td>CNY/VND</td>
-            <td class="up">3514.3486</td>
-            <td class="up">0.205%</td>
-        </tr>
-        <tr>
-            <td>JPY/VND</td>
-            <td class="up">163.2951</td>
-            <td class="up">0.009166%</td>
-        </tr>
-        <tr>
-            <td>EUR/USD</td>
-            <td class="up">1.0809</td>
-            <td class="up">0.6331%</td>
-        </tr>
-        <tr>
-            <td>USD/JPY</td>
-            <td class="down">156.72</td>
-            <td class="down">-0.2609%</td>
-        </tr>
-        <tr>
-            <td>USD/CNY</td>
-            <td class="down">7.2405</td>
-            <td class="down">-0.193%</td>
-        </tr>
+        @foreach($money['Exrate'] as $money)
+            <tr>
+                <td>{{$money['@attributes']['CurrencyCode']}}/VND</td>
+                <td class="up">{{$money['@attributes']['Buy']}}</td>
+                <td class="down">{{$money['@attributes']['Sell']}}</td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
     <table id="tigia" class="table table-bordered table-right">

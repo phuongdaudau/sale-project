@@ -9,9 +9,6 @@
             <div class=" col-lg-9">
                 <div class="left">
                     <div class="s-left">
-{{--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">--}}
-{{--                            Launch demo modal--}}
-{{--                        </button>--}}
                         <!-- <div class="btn-dang write-post" data-login="1">
                            Nhập nội dung...
                            <a href="#">Đăng bài</a>

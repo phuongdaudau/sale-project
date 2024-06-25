@@ -20,13 +20,9 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check() && Auth::user()->role->id == 1) {
-            return redirect()->route('master.dashboard');
+            return redirect()->route('master.product.index');
         } elseif (Auth::guard($guard)->check() && Auth::user()->role->id == 2) {
-            return redirect()->route('staff.dashboard');
-        } elseif (Auth::guard($guard)->check() && Auth::user()->role->id == 4) {
-            return redirect()->route('shipper.dashboard');
-        } elseif (Auth::guard($guard)->check() && Auth::user()->role->id == 3) {
-            return redirect()->route('customer.account');
+            return redirect('/');
         } else {
             return $next($request);
         }
