@@ -14,8 +14,8 @@
     <div class="container-fluid">
         <!-- Vertical Layout | With Floating Label -->
         <form action="{{ route('master.product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+                @csrf
+                @method('PUT')
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">

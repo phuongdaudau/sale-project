@@ -63,32 +63,6 @@
                     <span>Nhãn Dán</span>
                 </a>
             </li>
-            <!-- <li class="{{ Request::is('master/order*') ? 'active' : ''}}">
-                <a href="{{ route('master.order.index')}}">
-                    <i class="material-icons">content_paste</i>
-                    <span>Đơn Hàng</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('master/warehouse*') ? 'active' : ''}}">
-                <a href="{{ route('master.warehouse.index')}}">
-                    <i class="material-icons">view_module</i>
-                    <span>Kho hàng</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('master/ship*') ? 'active' : ''}}">
-                <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">directions_car</i>
-                    <span>Vận Chuyển</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::is('master/ship') ? 'active' : ''}}" >
-                        <a href="{{ route('master.ship.index')}}">Đơn Vận Chuyển</a>
-                    </li>
-                    <li class="{{ Request::is('master/ship/delivery-fee*') ? 'active' : ''}}" >
-                        <a href="{{ route('master.ship.addFee')}}">Phí Vận Chuyển</a>
-                    </li>
-                </ul>
-            </li> -->
             <li class="header">Hệ thống</li>
             <li class="">
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

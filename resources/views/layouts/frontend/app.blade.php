@@ -35,7 +35,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js"></script>
     <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/jquery.nice-select.min.js') }}"></script>
+{{--    <script src="{{ asset('assets/frontend/js/jquery.nice-select.min.js') }}"></script>--}}
     <script src="{{ asset('assets/frontend/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/mixitup.min.js') }}"></script>

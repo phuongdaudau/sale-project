@@ -39,9 +39,9 @@ class HomeController extends Controller
         $tags = Tag::latest()->take(20)->pluck('name', 'id')->toArray();
         $users = User::latest()->take(6)->get()->toArray();
         $latest_products = Product::latest()->take(6)->get()->toArray();
-        $itemsGold = Feed::getGold();
+//        $itemsGold = Feed::getGold();
         $money = Feed::tyGia();
-        dd($itemsGold);
+//        dd($itemsGold);
         return view('welcome', compact('categories', 'latest_products', 'tags', 'users', 'money'));
     }
 

@@ -32,6 +32,8 @@ Route::group(['as' => 'master.', 'prefix' => 'master',  'middleware' => 'master'
 
 Route::group(['as' => 'customer.', 'prefix' => 'customer', 'middleware' => 'customer'], function () {
     Route::get('account', [App\Http\Controllers\UserController::class, 'index'])->name('account');
+    Route::get('gui-bai', [App\Http\Controllers\UserController::class, 'createProduct'])->name('product.create');
+    Route::post('product/store', [App\Http\Controllers\UserController::class, 'storeProduct'])->name('product.store');
     Route::put('update/{id}', [ App\Http\Controllers\UserController::class, 'update'])->name('update');
     Route::put('password-update', [ App\Http\Controllers\UserController::class, 'updatePassword'])->name('password.update');
     Route::post('favorite/{product}/add', [App\Http\Controllers\UserController::class, 'addFavorite'])->name('product.favorite');

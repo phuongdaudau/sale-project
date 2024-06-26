@@ -190,6 +190,18 @@ class Template{
         echo $xhtml;
     }
 
+    public static function gender($id){
+    $arr = ['0' => 'Chon', '1' => 'Nam', '2' => 'Nữ', '3' => 'Khác'];
+        $xhtml = '';
+    foreach ($arr as $key => $value)
+        if ($key == $id) {
+            $xhtml .= '<option value="' . $id . '" selected>' . $arr[$id] . '</option>';
+        } else {
+            $xhtml .= '<option value="' . $key . '">' . $value . '</option>';
+        }
+    echo $xhtml;
+}
+
     public static function checkStatusShip($status){
         $arr = ['0' => 'Bị hủy', '1' => 'Lên đơn', '2' => 'Đóng gói', '3' => 'Nhập kho ', '4' => 'Xuất kho ', '5' => 'Đang giao', '6' => 'Đã giao'];
         $xhtml = '';

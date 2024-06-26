@@ -84,9 +84,6 @@ class Feed
             echo 'cURL Error: ' . curl_error($ch);
         } else {
             $data = json_decode($response)->DataList->Data;
-
-            dd($data);
-
             // Check if the response is valid XML
             if ($xml === false) {
                 echo 'Failed to parse XML';

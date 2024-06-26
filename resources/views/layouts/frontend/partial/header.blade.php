@@ -96,17 +96,17 @@
                 <div class="dropdown-info">
                     <button class="box-login" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="box-icon-wrapper">
-                            <img src="{{ asset('assets/frontend/img/default-ava.png') }}" alt="avatar">
+                            <img src="{{ Auth::user()->image ? url(Auth::user()->image) : asset('assets/frontend/img/default-ava.png') }}" alt="avatar">
                         </div>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <ul class="user_dropdown">
                             <li><strong>Xin chào, {{ Auth::user()->username }}</strong></li>
                             <li>
-                                <a href="/gui-bai">Viết bài</a>
+                                <a href="{{ route('customer.product.create') }}">Viết bài</a>
                             </li>
                             <li>
-                                <a href="/user/profile">Thông tin tài khoản</a>
+                                <a href="{{ route('customer.account') }}">Thông tin tài khoản</a>
                             </li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();

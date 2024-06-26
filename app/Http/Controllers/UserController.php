@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Template;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\User;
@@ -10,41 +12,54 @@ use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
     public function index(){
-        $user = User::where('id',  Auth::id())->get()->toArray();
-        return view('user', compact('user'));
+        $categories = Template::renderSideBar(Category::get()->toArray());
+        $categories['slug'] = Category::pluck('slug', 'id')->toArray();
+        $user = User::where('id',  Auth::id())->first();
+        return view('user', compact('user', 'categories'));
+    }
+    public function createProduct(){
+        $categories = Template::renderSideBar(Category::get()->toArray());
+        $categories['slug'] = Category::pluck('slug', 'id')->toArray();
+
+        $category = Template::renderCategories(Category::get()->toArray());
+        return view('create-product', compact('categories', 'category'));
     }
 
     public function update(Request $request, $id)
     {
         $user = User::find($id);
 
-        $image = $request->file('image');
+        $image = $request->file('avatar');
         if (isset($image)) {
             $currentDate = Carbon::now()->toDateString();
             $imageName = $user->username . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            if (!Storage::disk('public')->exists('profile')) {
-                Storage::disk('public')->makeDirectory('profile');
-            }
-            
-            if (Storage::disk('public')->exists('profile/' . $user->image)) {
-                Storage::disk('public')->delete('profile/' . $user->image);
-            }
-            $profile = Image::make($image)->resize(150, 150)->save($imageName . '.' . $image->getClientOriginalExtension());
-            Storage::disk('public')->put('profile/' . $imageName, $profile);
+
+            $data = [
+                'file'          => $image,
+                'folder'        => '/uploads/profile',
+                'filename'      => $imageName,
+                'old'           => $user->image
+            ];
+
+            $imageName = Template::uploadFile($data);
         } else {
             $imageName = $user->image;
         }
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->about = $request->about;
-        $user->image = $imageName;
+        $user->name             = $request->name;
+        $user->username         = $request->username;
+        $user->identify_no      = $request->identify_no;
+        $user->phone            = $request->phone;
+        $user->date_of_birth    = $request->date_of_birth;
+        $user->gender           = $request->gender;
+        $user->about            = $request->about;
+        $user->image            = $imageName;
         $user->save();
         Toastr::success('Cập nhật thông tin công!', 'success');
         return redirect()->route('customer.account');
@@ -75,6 +90,63 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+    public function storeProduct(Request $request)
+    {
+        dd($request->all());
+        $this->validate($request, [
+            'name'              => 'required',
+            'description'       => 'required',
+            'about'             => 'required',
+            'category_id'       => 'required',
+            'image'             => 'required|max:5120',
+            'tags'              => 'required',
+        ]);
+
+        $tags = explode(',', $request->tags);
+        $tagsId = [];
+        foreach ($tags as $item) {
+            $tagName = ltrim($item);
+            $tag = new Tag();
+            $tag->name = $tagName;
+            $tag->slug = Str::slug($tagName);
+            $tag->save();
+            $tagsId[] = $tag->id;
+        }
+
+        $product = new Product();
+        $product->user_id = Auth::id();
+        $product->name = $request->name;
+        $slug = Str::slug($request->name);
+        $product->slug = $slug;
+        $product->about = $request->about;
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
+
+        if($request->hasfile('image')){
+            $imagename = '';
+            foreach($request->file('image') as $key=>$image){
+                $currentDate = Carbon::now()->toDateString();
+                $imageName = $slug.'-'. $currentDate .'-'. $key . '.' . $image->getClientOriginalExtension();
+                $data = [
+                    'file'          => $image,
+                    'folder'        => '/uploads/product-thumb',
+                    'filename'      => $imageName,
+                ];
+
+                $imagename = Template::uploadFile($data);
+            }
+            $product->image = $imagename;
+        }
+
+        $product->is_approved = false;
+        $product->save();
+
+        $product->tags()->attach($tagsId);
+
+        Toastr::success(' Lưu bài viết thành công! Đang đợi admin phê duyệt!', 'Success');
+        return redirect('/');
+    }
+
 
     public function addFavorite($product)
     {

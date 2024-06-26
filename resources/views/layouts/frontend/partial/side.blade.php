@@ -80,7 +80,7 @@
         </ul>
     </div>
     <h3>Giá vàng</h3>
-    <div id="box-gold" class="d-flex align-items-center justify-content-center" data-url="{{ route('get.gold') }}">
+    <div id="box-gold" class="d-flex align-items-center justify-content-center" data-url="">
         <img src="{{ asset('images/loading.gif') }}" alt="">
     </div>
     <table id="tigia" class="table table-bordered table-right">
