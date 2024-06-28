@@ -45,6 +45,14 @@ class HomeController extends Controller
         return view('welcome', compact('categories', 'latest_products', 'tags', 'users', 'money'));
     }
 
+    public function listProduct($id){
+        $categories = Template::renderSideBar(Category::get()->toArray());
+        $categories['slug'] = Category::pluck('slug', 'id')->toArray();
+        $user = User::where('id',  $id)->first();
+
+        return view('list-product', compact('categories', 'user'));
+    }
+
     public function contact(){
         return view('contact');
     }

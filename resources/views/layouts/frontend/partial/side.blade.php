@@ -3,7 +3,7 @@
         <h3 class="title">
             <img src="{{ asset('assets/frontend/img/ic-pencil.svg') }}" alt="Viết bài" title="Viết bài">Viết bài
         </h3>
-        <div class="box write-post" data-login="1">
+        <div class="box write-post" data-login="{{ Auth::user() && Auth::user()->role->id == 2 ? 1 : 0 }}">
             Nhập nội dung...
             <a href="#">Đăng bài</a>
         </div>

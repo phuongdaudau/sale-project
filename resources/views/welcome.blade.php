@@ -575,3 +575,41 @@
     </div>
 
 @endsection
+@push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        function deleteproduct(id){
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger mr-15'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Bạn có chắc muốn xóa?',
+                text: "Bạn sẽ không thể lấy lại dữ liệu nếu xóa!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-'+id).submit();
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Đã hủy',
+                        'Dữ liệu của bạn vẫn nguyên vẹn!',
+                        'error'
+                    )
+                }
+            })
+        }
+    </script>
+@endpush

@@ -88,7 +88,7 @@ $(document).ready(function () {
     $(".write-post").on("click", function () {
         var isLog = $(this).attr("data-login");
         if (isLog == 1) {
-            window.location = "/gui-bai";
+            window.location = "/customer/gui-bai";
         } else {
             $("#loginModal").modal();
         }
@@ -772,7 +772,7 @@ $(document).ready(function () {
         var isLog = $(this).attr("data-login");
         console.log(isLog);
         if (isLog == 1) {
-            window.location = "/gui-bai";
+            window.location = "/customer/gui-bai";
         } else {
             $("#loginModal").modal();
         }

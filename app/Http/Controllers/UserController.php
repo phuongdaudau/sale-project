@@ -30,6 +30,16 @@ class UserController extends Controller
         $category = Template::renderCategories(Category::get()->toArray());
         return view('create-product', compact('categories', 'category'));
     }
+    public function updateProduct($id){
+        $categories = Template::renderSideBar(Category::get()->toArray());
+        $categories['slug'] = Category::pluck('slug', 'id')->toArray();
+        $category = Template::renderCategories(Category::get()->toArray());
+        $product = Product::where('id',  $id)->where('is_approved',  0)->first();
+        $tagName = $product->tags->pluck('name')->toArray();
+        $tags = implode(', ', $tagName);
+
+        return view('edit-product', compact('categories', 'category', 'product', 'tags'));
+    }
 
     public function update(Request $request, $id)
     {
@@ -92,7 +102,6 @@ class UserController extends Controller
     }
     public function storeProduct(Request $request)
     {
-        dd($request->all());
         $this->validate($request, [
             'name'              => 'required',
             'description'       => 'required',
@@ -123,18 +132,16 @@ class UserController extends Controller
         $product->category_id = $request->category_id;
 
         if($request->hasfile('image')){
+            $image = $request->file('image');
             $imagename = '';
-            foreach($request->file('image') as $key=>$image){
-                $currentDate = Carbon::now()->toDateString();
-                $imageName = $slug.'-'. $currentDate .'-'. $key . '.' . $image->getClientOriginalExtension();
-                $data = [
-                    'file'          => $image,
-                    'folder'        => '/uploads/product-thumb',
-                    'filename'      => $imageName,
-                ];
-
-                $imagename = Template::uploadFile($data);
-            }
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $slug.'-'. $currentDate . $image->getClientOriginalExtension();
+            $data = [
+                'file'          => $image,
+                'folder'        => '/uploads/product-thumb',
+                'filename'      => $imageName,
+            ];
+            $imagename = Template::uploadFile($data);
             $product->image = $imagename;
         }
 
@@ -144,7 +151,80 @@ class UserController extends Controller
         $product->tags()->attach($tagsId);
 
         Toastr::success(' Lưu bài viết thành công! Đang đợi admin phê duyệt!', 'Success');
-        return redirect('/');
+        return redirect()->route('product.list', Auth::user()->id);
+    }
+    public function storeUpdateProduct(Request $request, Product $product)
+    {
+        $this->validate($request, [
+            'name'              => 'required',
+            'description'       => 'required',
+            'about'             => 'required',
+            'category_id'       => 'required',
+            'image'             => 'required|max:5120',
+            'tags'              => 'required',
+        ]);
+
+        $originTag = $product->tags->pluck('name')->toArray();
+        $tags = explode(', ', $request->tags);
+        $tagsId = [];
+
+//        dd(array_diff($tags, $originTag));
+        if(array_diff($tags, $originTag)) {
+            $originId = $product->tags->pluck('id')->toArray();
+            Tag::destroy($originId);
+            foreach ($tags as $item) {
+                $tagName = ltrim($item);
+                $tag = new Tag();
+                $tag->name = $tagName;
+                $tag->slug = Str::slug($tagName);
+                $tag->save();
+                $tagsId[] = $tag->id;
+            }
+        }
+
+        $product->user_id = Auth::id();
+        $product->name = $request->name;
+        $slug = Str::slug($request->name);
+        $product->slug = $slug;
+        $product->about = $request->about;
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
+
+        if($request->hasfile('image')){
+            $image = $request->file('image');
+            $imagename = '';
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $slug.'-'. $currentDate .'.' . $image->getClientOriginalExtension();
+
+            $data = [
+                'file'          => $image,
+                'folder'        => '/uploads/product-thumb',
+                'filename'      => $imageName,
+                'old'           => $product->image ?? '',
+            ];
+
+            $imagename = Template::uploadFile($data);
+
+            $product->image = $imagename;
+        }
+
+        $product->update();
+        $product->tags()->sync($tagsId);
+
+        Toastr::success(' Cập nhật bài viết thành công!', 'Success');
+        return redirect()->route('product.list', Auth::user()->id);
+    }
+
+    public function destroyProduct(Product $product)
+    {
+        $oldFile = public_path() . $product->image;
+        if ($product->image && file_exists($oldFile)) {
+            unlink($oldFile);
+        }
+        $product->tags()->detach();
+        $product->delete();
+        Toastr::success('Xóa bài viết thành công!', 'Success');
+        return redirect()->back();
     }
 
 

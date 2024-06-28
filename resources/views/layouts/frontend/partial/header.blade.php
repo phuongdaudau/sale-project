@@ -81,7 +81,7 @@
             </form>
         </li>
         <li class="write-pc">
-            <div class="write write-post" data-login="1">
+            <div class="write write-post" data-login="{{ Auth::user() && Auth::user()->role->id == 2 ? 1 : 0 }}">
                 <span class="material-icons"> mode_edit </span>
                 Viết
             </div>
@@ -104,6 +104,9 @@
                             <li><strong>Xin chào, {{ Auth::user()->username }}</strong></li>
                             <li>
                                 <a href="{{ route('customer.product.create') }}">Viết bài</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('product.list', Auth::user()->id) }}">Bài viết của tôi</a>
                             </li>
                             <li>
                                 <a href="{{ route('customer.account') }}">Thông tin tài khoản</a>
