@@ -286,7 +286,7 @@ class Template{
             if (file_exists($tempfile)) {
                 unlink($tempfile);
             }
-            if(isset($data['old'])) {
+            if(isset($data['old']) && $data['old']) {
                 $oldFile = public_path() . $data['old'];
                 if (file_exists($oldFile)) {
                     unlink($oldFile);
