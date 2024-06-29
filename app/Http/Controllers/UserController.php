@@ -168,18 +168,15 @@ class UserController extends Controller
         $tags = explode(', ', $request->tags);
         $tagsId = [];
 
-//        dd(array_diff($tags, $originTag));
-        if(array_diff($tags, $originTag)) {
-            $originId = $product->tags->pluck('id')->toArray();
-            Tag::destroy($originId);
-            foreach ($tags as $item) {
-                $tagName = ltrim($item);
-                $tag = new Tag();
-                $tag->name = $tagName;
-                $tag->slug = Str::slug($tagName);
-                $tag->save();
-                $tagsId[] = $tag->id;
-            }
+        $originId = $product->tags->pluck('id')->toArray();
+        Tag::destroy($originId);
+        foreach ($tags as $item) {
+            $tagName = ltrim($item);
+            $tag = new Tag();
+            $tag->name = $tagName;
+            $tag->slug = Str::slug($tagName);
+            $tag->save();
+            $tagsId[] = $tag->id;
         }
 
         $product->user_id = Auth::id();

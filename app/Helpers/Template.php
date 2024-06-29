@@ -191,7 +191,7 @@ class Template{
     }
 
     public static function gender($id){
-    $arr = ['0' => 'Chon', '1' => 'Nam', '2' => 'Nữ', '3' => 'Khác'];
+    $arr = ['0' => 'Chọn', '1' => 'Nam', '2' => 'Nữ', '3' => 'Khác'];
         $xhtml = '';
     foreach ($arr as $key => $value)
         if ($key == $id) {
@@ -350,5 +350,20 @@ class Template{
         ];
 
         return $res;
+    }
+    public static function displayElapsedTime($date)
+    {
+        $created_at = $date->diffForHumans();
+        $created_at = str_replace([' seconds', ' second'], ' giây', $created_at);
+        $created_at = str_replace([' minutes', ' minute'], ' phút', $created_at);
+        $created_at = str_replace([' hours', ' hour'], ' giờ', $created_at);
+        $created_at = str_replace([' months', ' month'], ' tháng', $created_at);
+        $created_at = str_replace([' ago'], ' trước', $created_at);
+
+        if(preg_match('(years|year)', $created_at)){
+            $created_at = $date->toFormattedDateString();
+        }
+
+        return $created_at;
     }
 }

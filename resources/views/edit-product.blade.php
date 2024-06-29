@@ -105,7 +105,7 @@
                     </div>
                     <div class="d-flex justify-content-center" style="margin-top: 20px;">
                         <!-- <a href="javascript: history.go(-1)" class="btn btn-danger" style="margin-right: 15px">Quay lại</a> -->
-                        <button type="submit" class="btn btn-success">Gửi bài viết</button>
+                        <button type="submit" class="btn btn-success">Lưu bài viết</button>
                     </div>
                 </div>
             </form>

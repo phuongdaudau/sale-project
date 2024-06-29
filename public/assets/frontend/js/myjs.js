@@ -40,11 +40,11 @@ $(document).ready(function () {
             // $("body").css("overflow-y", "hidden");
 
             if (window.screen.width < 768) {
-                $(".write-mb").fadeOut("slow");
-                $(".login-mb").fadeIn("slow");
+                // $(".write-mb").fadeOut("slow");
+                // $(".login-mb").fadeIn("slow");
 
-                // $(".write-mb").hide();
-                // $(".login-mb").show();
+                $(".write-mb").hide();
+                $(".login-mb").show();
             }
         }
         if (click == 1) {
@@ -52,11 +52,11 @@ $(document).ready(function () {
             $(".open-menu-mb .line").removeClass("active");
             $(".open-menu-mb").attr("data-click", "0");
             if (window.screen.width < 768) {
-                $(".login-mb").fadeOut("slow");
-                $(".write-mb").fadeIn("slow");
+                // $(".login-mb").fadeOut("slow");
+                // $(".write-mb").fadeIn("slow");
 
-                // $(".login-mb").hide();
-                // $(".write-mb").show();
+                $(".login-mb").hide();
+                $(".write-mb").show();
             }
         }
     });

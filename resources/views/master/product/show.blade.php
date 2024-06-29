@@ -170,18 +170,18 @@
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                 confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
+                cancelButton: 'btn btn-danger m-r-15'
                 },
                 buttonsStyling: false
             })
             
             swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You went to approve this product!",
+                title: 'Bạn có muốn xác nhận bài viết?',
+                text: "Bạn sẽ không thể hoàn tác hành động này!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, approve it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không',
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -192,9 +192,9 @@
                 result.dismiss === Swal.DismissReason.cancel
                 ) {
                 swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'The product remain pending :)',
-                    'info'
+                    'Đã hủy',
+                    'Dữ liệu của bạn vẫn nguyên vẹn!',
+                    'error'
                 )
                 }
             })

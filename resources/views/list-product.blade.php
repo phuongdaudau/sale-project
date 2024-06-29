@@ -4,12 +4,12 @@
 @push('css')
     <style>
         .content-home {
-            background: #fff;
-            box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
-            min-height: 500px;
-            margin-top: 15px;
-            margin-top: 75px;
-            padding: 25px;
+        background: #fff;
+        box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
+        min-height: 500px;
+        margin-top: 15px;
+        margin-top: 75px;
+        padding: 25px;
         }
         .content-home .dashboard-left {
             padding: 25px !important;
@@ -55,7 +55,7 @@
         }
         @media screen and (max-width: 992px) {
             .content-home .dashboard-right .tilte {
-                width: 50%;
+                width: 50%!important;
             }
         }
 
@@ -99,12 +99,20 @@
              float: left;
              padding-right: 20px;
          }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-            background-color: transparent;
+        @media screen and (max-width: 768px) {
+            .content-home article a.first-view {
+                width: 100%;
+                padding-right: 0;
+            }
         }
+
+        @media screen and (max-width: 768px) {
+            .content-home article .info-post {
+                width: 100% !important;
+                padding-top: 15px;
+            }
+        }
+
         .content-home article .info-post {
             width: 65%;
             float: right;
@@ -211,16 +219,15 @@
                     <p> @user{{ $user->id }}</p>
                     <div class="statistical">
                         <div class="statistical-item">
-                            <strong>152</strong>
+                            <strong>0</strong>
                             <p>Lượt like</p>
                         </div>
                         <div class="statistical-item">
-                            <strong>
-                                42            </strong>
+                            <strong>{{ $user->products->count() }}</strong>
                             <p>Bài viết</p>
                         </div>
                         <div class="statistical-item">
-                            <strong>00</strong>
+                            <strong>0</strong>
                             <p>Bình luận</p>
                         </div>
                     </div>
@@ -246,9 +253,9 @@
                             @foreach($products as $product)
                                 <article>
                                     <h3 class="title-news">
-                                        <a href="/ly-do-cac-cong-ty-chung-khoan-don-dap-tang-von-p21417.html" class="title"> {{ $product->name }}  </a>
+                                        <a href="#" class="title"> {{ $product->name }}  </a>
                                     </h3>
-                                    <a href="/ly-do-cac-cong-ty-chung-khoan-don-dap-tang-von-p21417.html" class="first-view">
+                                    <a href="#" class="first-view">
                                         <img loading="lazy" class=" lazyloaded" src="{{ $product->image ? url($product->image) : asset('assets/frontend/img/default-thumb.jpg') }}" alt="uploads/news_web/2024/03/16/ctck-1710584872.png" width="450px" height="260px">
                                     </a>
                                     <div class="info-post">
@@ -258,7 +265,7 @@
                                                 <span>
                                           <a href="{{ route('product.list', $user->id) }}"> {{ $user->name }}  </a>
                                         </span>
-                                                <span> - 15' trước </span>
+                                                <span> - {{ App\Helpers\Template::displayElapsedTime($product->created_at) }}  </span>
                                             </div>
                                             <div class="social icon-wrap">
                                                 <div class="ic" data-toggle="modal" data-target="#loginModal" data-id="21417">
@@ -283,7 +290,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <a href="/ly-do-cac-cong-ty-chung-khoan-don-dap-tang-von-p21417.html">
+                                        <a href="#">
                                             <p class="desc text-3">{{ $product->description }}</p>
                                         </a>
                                     </div>
