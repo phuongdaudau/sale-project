@@ -214,7 +214,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="dashboard-left">
-                    <img src="{{ Auth::user()->image ? url(Auth::user()->image) : asset('assets/frontend/img/default-ava.png') }}" alt="" class="avt">
+                    <img src="{{ $user->image ? url($user->image) : asset('assets/frontend/img/default-ava.png') }}" alt="" class="avt">
                     <h4>{{ $user->name }}</h4>
                     <p> @user{{ $user->id }}</p>
                     <div class="statistical">
@@ -276,7 +276,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e8eaed"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
                                                     <span class="count-cmt">0</span>
                                                 </div>
-                                                @if($user->id == Auth::user()->id && $product->is_approved == 0)
+                                                @if(Auth::check() && $user->id == Auth::user()->id && $product->is_approved == 0)
                                                 <a class="icon-modify" href="{{ route('customer.product.update', $product->id) }}">
                                                     <span class="material-icons"> mode_edit </span>
                                                 </a>
