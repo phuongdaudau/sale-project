@@ -47,7 +47,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            dd($request->all());
             $user = User::find($id);
 
             $validator = Validator::make($request->all(), [
@@ -72,6 +71,8 @@ class UserController extends Controller
                 ];
 
                 $imageName = Template::uploadFile($data);
+                dd($imageName);
+
             } else {
                 $imageName = $user->image;
             }
