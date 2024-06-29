@@ -64,7 +64,7 @@ class UserController extends Controller
                 'file'          => $image,
                 'folder'        => '/uploads/profile',
                 'filename'      => $imageName,
-                'old'           => $user->image
+                'old'           => $user->image ?? ''
             ];
 
             $imageName = Template::uploadFile($data);
