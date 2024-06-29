@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Template;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\User;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
+use mysql_xdevapi\Exception;
 
 class UserController extends Controller
 {
@@ -44,45 +46,49 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        try {
+            $user = User::find($id);
 
-        $validator = Validator::make($request->all(), [
-            'avatar'    => 'max:5120',
-        ]);
+            $validator = Validator::make($request->all(), [
+                'avatar'    => 'max:5120',
+            ]);
 
-        if ($validator->fails()) {
-            Toastr::error('Avatar vượt quá 5MB!', 'Error');
-            return redirect()->back();
+            if ($validator->fails()) {
+                Toastr::error('Avatar vượt quá 5MB!', 'Error');
+                return redirect()->back();
+            }
+
+            $image = $request->file('avatar');
+            if (isset($image)) {
+                $currentDate = Carbon::now()->toDateString();
+                $imageName = $user->username . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+                $data = [
+                    'file'          => $image,
+                    'folder'        => '/uploads/profile',
+                    'filename'      => $imageName,
+                    'old'           => $user->image ?? ''
+                ];
+
+                $imageName = Template::uploadFile($data);
+            } else {
+                $imageName = $user->image;
+            }
+
+            $user->name             = $request->name;
+            $user->username         = $request->username;
+            $user->identify_no      = $request->identify_no;
+            $user->phone            = $request->phone;
+            $user->date_of_birth    = $request->date_of_birth;
+            $user->gender           = $request->gender;
+            $user->about            = $request->about;
+            $user->image            = $imageName;
+            $user->save();
+            Toastr::success('Cập nhật thông tin công!', 'success');
+            return redirect()->route('customer.account');
+        } catch (ModelNotFoundException $exception) {
+            throw $exception;
         }
-
-        $image = $request->file('avatar');
-        if (isset($image)) {
-            $currentDate = Carbon::now()->toDateString();
-            $imageName = $user->username . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            $data = [
-                'file'          => $image,
-                'folder'        => '/uploads/profile',
-                'filename'      => $imageName,
-                'old'           => $user->image ?? ''
-            ];
-
-            $imageName = Template::uploadFile($data);
-        } else {
-            $imageName = $user->image;
-        }
-
-        $user->name             = $request->name;
-        $user->username         = $request->username;
-        $user->identify_no      = $request->identify_no;
-        $user->phone            = $request->phone;
-        $user->date_of_birth    = $request->date_of_birth;
-        $user->gender           = $request->gender;
-        $user->about            = $request->about;
-        $user->image            = $imageName;
-        $user->save();
-        Toastr::success('Cập nhật thông tin công!', 'success');
-        return redirect()->route('customer.account');
     }
 
     public function updatePassword(Request $request)
