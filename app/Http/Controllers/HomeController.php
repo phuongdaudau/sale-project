@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Feed;
 use App\Helpers\Template;
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -13,6 +14,7 @@ use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
 class HomeController extends Controller
@@ -73,6 +75,13 @@ class HomeController extends Controller
     }
 
     public function uploadImageCkeditor(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'upload'    => 'max:5120',
+        ]);
+
+        if ($validator->fails()) {
+            dd('failed');
+        }
         if($request->hasfile('upload')){
             $image = $request->file('upload');
             $currentDate = Carbon::now()->toDateString();

@@ -131,7 +131,6 @@ class ProductController extends Controller
             $tagsId[] = $tag->id;
         }
 
-        $product->user_id = Auth::id();
         $product->name = $request->name;
         $slug = Str::slug($request->name);
         $product->slug = $slug;

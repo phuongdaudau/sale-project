@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -44,6 +45,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'avatar'    => 'max:5120',
+        ]);
+
+        if ($validator->fails()) {
+            Toastr::error('Avatar vượt quá 5MB!', 'Error');
+            return redirect()->back();
+        }
 
         $image = $request->file('avatar');
         if (isset($image)) {
@@ -102,14 +112,19 @@ class UserController extends Controller
     }
     public function storeProduct(Request $request)
     {
-        $this->validate($request, [
-            'name'              => 'required',
-            'description'       => 'required',
+        $validator = Validator::make($request->all(), [
+            'name'              => 'required|max:255',
+            'description'       => 'required|max:255',
             'about'             => 'required',
             'category_id'       => 'required',
             'image'             => 'required|max:5120',
-            'tags'              => 'required',
+            'tags'              => 'required|max:255',
         ]);
+
+        if ($validator->fails()) {
+            Toastr::error('Vui lòng kiểm tra lại thông tin!', 'Error');
+            return redirect()->back();
+        }
 
         $tags = explode(',', $request->tags);
         $tagsId = [];
@@ -155,14 +170,19 @@ class UserController extends Controller
     }
     public function storeUpdateProduct(Request $request, Product $product)
     {
-        $this->validate($request, [
-            'name'              => 'required',
-            'description'       => 'required',
+        $validator = Validator::make($request->all(), [
+            'name'              => 'required|max:255',
+            'description'       => 'required|max:255',
             'about'             => 'required',
             'category_id'       => 'required',
             'image'             => 'required|max:5120',
-            'tags'              => 'required',
+            'tags'              => 'required|max:255',
         ]);
+
+        if ($validator->fails()) {
+            Toastr::error('Vui lòng kiểm tra lại thông tin!', 'Error');
+            return redirect()->back();
+        }
 
         $originTag = $product->tags->pluck('name')->toArray();
         $tags = explode(', ', $request->tags);
